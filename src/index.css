@@ -32,6 +32,44 @@
 body {
   background-color: black;
   color: white;
+  position: relative;
+}
+
+/* Add a spacer to push content below the hero */
+#root {
+  position: relative;
+}
+
+/* Create a class for fullscreen sections */
+.h-screen {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* Adding spacing for content sections to properly overlap hero */
+.content-section {
+  margin-top: 90vh; /* Adjust this value to control when content starts overlapping hero */
+  background-color: rgba(9, 9, 11, 0.95); /* Slightly transparent background */
+  position: relative;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5); /* Add shadow for smoother transition */
+  z-index: 10; /* Ensure content is above hero but below navbar */
+}
+
+/* Space at the top of hero */
+.hero-space-top {
+  height: 4rem; /* Adjust this height as needed */
+}
+
+/* Fix z-index for navbar */
+header {
+  z-index: 50 !important; /* Ensure navbar is always on top */
+}
+
+/* Navbar transition styles */
+.nav-header {
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  background-color: rgba(10, 28, 46, 0.059);
 }
 
 .screen-max-width {
@@ -57,14 +95,14 @@ body {
 }
 
 .herobox {
-  margin-inline-start: auto;
+  /* margin-inline-start: auto;
   margin-inline-end: auto;
   position: relative;
   max-width: 1120px;
-  justify-content: center;
+  justify-content: center; */
   background: radial-gradient(
       83.29% 288.04% at 92.82% 10.09%,
-      rgba(8, 99, 145, 0.51) 4.36%,
+      rgba(0, 0, 0, 0.51) 20.36%,
       #01324b 67.79%,
       #000000 100%
     )
@@ -99,4 +137,19 @@ body {
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* Create a proper stacking context for sections */
+section {
+  position: relative;
+}
+
+/* Ensure About section has proper stacking */
+#about {
+  z-index: 10;
 }

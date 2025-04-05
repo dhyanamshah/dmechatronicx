@@ -1,20 +1,41 @@
 import React from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const MissionAndVision = () => {
   useGSAP(() => {
-    gsap.fromTo(
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Creating a timeline for mission and vision animations
+    const mvTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#mission",
+        start: "top bottom-=50",
+        end: "bottom top+=100",
+        toggleActions: "play none none reverse", // play on enter, reverse on leave
+      },
+    });
+
+    // Add animations to the timeline
+    mvTl.fromTo(
       "#mission",
       { opacity: 0, x: 50 },
-      { opacity: 1, x: 0, duration: 1, ease: "power2.inOut", delay: 0.3 }
+      { opacity: 1, x: 0, duration: 1, ease: "power2.inOut" }
     );
 
-    gsap.fromTo(
+    mvTl.fromTo(
       "#vision",
       { opacity: 0, x: 50 },
-      { opacity: 1, x: 0, duration: 1, ease: "power2.inOut", delay: 0.6 }
+      { opacity: 1, x: 0, duration: 1, ease: "power2.inOut" },
+      "-=0.7" // Start a bit before the previous animation finishes
     );
+
+    // Clean up ScrollTrigger instances when component unmounts
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
   return (

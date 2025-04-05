@@ -12,7 +12,7 @@ const Members = () => {
             key={member.id}
             className="relative group bg-blue-400 p-1 rounded-b-md border-black cursor-pointer transition-transform duration-300 lg:hover:-translate-y-20 filter grayscale hover:grayscale-0"
           >
-            <h3 className="font-bold font-montserrat text-xl absolute">
+            <h3 className="absolute top-2 left-2 font-bold font-montserrat text-xl z-10 lg:group-hover:translate-y-[9vh] duration-300 sm:group-hover:translate-y-1">
               {member.role}
             </h3>
             <img

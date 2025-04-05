@@ -9,13 +9,60 @@ import gsap from "gsap";
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
+  const [scrollDir, setScrollDir] = useState("up");
+  const [prevScrollY, setPrevScrollY] = useState(0);
   const burgerRef = useRef(null);
   const menuRef = useRef(null);
+  const headerRef = useRef(null);
 
   // Handler to close the burger menu
   const handleNavItemClick = () => {
     setToggle(false);
   };
+
+  // Track scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 10) {
+        // Always show navbar at top of page
+        setScrollDir("up");
+      } else if (currentScrollY > prevScrollY) {
+        // Scrolling down
+        setScrollDir("down");
+      } else {
+        // Scrolling up
+        setScrollDir("up");
+      }
+
+      setPrevScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollY]);
+
+  // Animate navbar based on scroll direction
+  useEffect(() => {
+    if (headerRef.current) {
+      if (scrollDir === "down" && !toggle) {
+        // Hide navbar when scrolling down
+        gsap.to(headerRef.current, {
+          yPercent: -100,
+          duration: 0.3,
+          ease: "power3.out",
+        });
+      } else {
+        // Show navbar when scrolling up
+        gsap.to(headerRef.current, {
+          yPercent: 0,
+          duration: 0.3,
+          ease: "power3.out",
+        });
+      }
+    }
+  }, [scrollDir, toggle]);
 
   // GSAP animation for burger menu toggle
   useEffect(() => {
@@ -57,12 +104,15 @@ const NavBar = () => {
   };
 
   return (
-    <header className="w-full py-2 sm:px-10 px-5 flex justify-between items-center">
-      <nav className="flex w-full screen-max-widt">
-        <span className="flex absolute justify-start py-2 font-montserrat font-bold px-5 sm:px-2 md:relative">
+    <header
+      ref={headerRef}
+      className="w-full py-2 sm:px-10 px-5 flex justify-between items-center fixed top-0 left-0 z-50 nav-header transition-transform"
+    >
+      <nav className="flex w-full screen-max-width">
+        <span className="flex absolute justify-start py-2 font-montserrat font-bold px-5 lg:opacity-0 sm:px-2 md:relative">
           GOODSHOT
         </span>
-        <div className=" flex justify-between max-sm:hidden font-bold bg-cyan-400/10 backdrop-blur-md rounded-r-full p-2">
+        <div className=" flex justify-between max-sm:hidden font-bold bg-cyan-400/10 backdrop-blur-md rounded-full p-2">
           {navItems.map((nav, index) => (
             <React.Fragment key={nav}>
               {index > 0 && (

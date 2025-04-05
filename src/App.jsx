@@ -6,11 +6,15 @@ import Members from "./components/Members";
 
 function App() {
   return (
-    <main className="body">
+    <main className="body relative">
       <NavBar />
-      <Hero />
-      <About />
-      <Members />
+      <div className="content-wrapper pt-16">
+        {" "}
+        {/* Add padding to account for fixed navbar */}
+        <Hero />
+        <About />
+        <Members />
+      </div>
     </main>
   );
 }
