@@ -15,6 +15,15 @@ export default {
       colors: {
         primary: "#1a1a1a",
         secondary: "#4a4a4a",
+      },
+      animation: {
+        'moving-text': 'movingText 10s linear',
+      },
+      keyframes: {
+        movingText: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
       }
     },
   },

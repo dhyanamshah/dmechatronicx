@@ -45,3 +45,58 @@ body {
 .title {
   @apply font-comfortaa font-bold text-3xl lg:text-5xl md:text-4xl lg:mb-0 mb-5 -translate-x-56 opacity-0;
 }
+
+.burger-items {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgb(1, 129, 154) 0%,
+    rgb(10, 10, 106) 70%,
+    rgb(6, 1, 94) 100%
+  );
+}
+
+.herobox {
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  position: relative;
+  max-width: 1120px;
+  justify-content: center;
+  background: radial-gradient(
+      83.29% 288.04% at 92.82% 10.09%,
+      rgba(8, 99, 145, 0.51) 4.36%,
+      #01324b 67.79%,
+      #000000 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-radius: 20px;
+}
+
+.memberbox {
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  position: absolute;
+  width: 99%;
+  height: 100%;
+  justify-content: left;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Apply globally to html and body */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
