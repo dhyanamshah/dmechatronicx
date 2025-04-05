@@ -1,12 +1,112 @@
-# React + Vite
+# Ikigai Team Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive team portfolio website built with React and GSAP animations.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive design that works on all devices
+- Smooth scroll and animations powered by GSAP
+- Animation sequences that trigger when scrolling
+- Clean, modern UI with custom fonts and gradients
 
-## Expanding the ESLint configuration
+## 📋 Prerequisites
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Before you begin, ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v14.0.0 or higher)
+- [npm](https://www.npmjs.com/) (v6.0.0 or higher) or [yarn](https://yarnpkg.com/)
+
+## 🔧 Installation
+
+1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd ikigai
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal)
+
+## 📦 Dependencies
+
+- React
+- GSAP (GreenSock Animation Platform)
+- TailwindCSS
+- React Icons
+
+## 🧰 Project Structure
+
+```
+ikigai/
+├── public/            # Static assets
+│   └── fonts/         # Custom fonts
+├── src/               # Source code
+│   ├── assets/        # Images and SVGs
+│   ├── components/    # React components
+│   ├── constant/      # Constants and configuration
+│   ├── App.jsx        # Main application component
+│   ├── index.css      # Global styles
+│   └── main.jsx       # Entry point
+└── README.md          # This file
+```
+
+## 🎨 Styling
+
+The project uses TailwindCSS for styling with custom utility classes defined in `index.css`. Custom fonts are loaded from the `/public/fonts` directory.
+
+## 🎬 Animations
+
+Animations are powered by GSAP with the ScrollTrigger plugin. Key animations include:
+
+1. **Hero Section**: The logo and text fade in on page load
+2. **Navbar**: Hides when scrolling down, appears when scrolling up
+3. **About Section**: Content fades in as you scroll to it
+4. **Mission and Vision**: Elements slide in from the side when they enter the viewport
+
+## 🔄 Scroll Behavior
+
+The site features a fixed hero section that stays in the background while content sections slide over it as you scroll. This creates a depth effect that enhances the visual experience.
+
+## 🔍 Browser Compatibility
+
+The website is compatible with all modern browsers (Chrome, Firefox, Safari, Edge).
+
+## 🛠️ Customization
+
+- To change the hero image: Replace `logo1.svg` in the `src/assets` directory
+- To modify the color scheme: Edit the gradient values in `index.css`
+- To update content: Modify the text in the respective component files
+
+## 📱 Responsive Design
+
+The website is fully responsive with specific styling for:
+
+- Mobile devices (< 640px)
+- Tablets (640px - 1024px)
+- Desktops (> 1024px)
+
+## 📚 Learn More
+
+- [React Documentation](https://reactjs.org/)
+- [GSAP Documentation](https://greensock.com/docs/)
+- [TailwindCSS Documentation](https://tailwindcss.com/docs)
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
