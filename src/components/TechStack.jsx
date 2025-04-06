@@ -26,15 +26,16 @@ const TechStack = () => {
       opacity: 1,
       y: 0,
       duration: 0.8,
+      delay: 0.6,
       ease: "power2.out",
     });
 
     // Then animate subtitle
     gsap.to(subRef.current, {
-      opacity: 1,
+      opacity: 0.5,
       y: 0,
-      duration: 0.8,
-      delay: 0.5,
+      duration: 0.7,
+      delay: 1,
       ease: "power2.out",
     });
 
@@ -43,28 +44,28 @@ const TechStack = () => {
       gsap.to(icon, {
         y: 0,
         opacity: 1,
-        duration: 0.6,
-        delay: 0.15 + 0.15 * index,
+        duration: 0.8,
+        delay: 0.25 + 0.25 * index,
         ease: "power3.in",
       });
     });
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4">
+    <div className="max-w-4xl mx-auto py-5 px-4">
       <h2
         id="title"
         ref={titleRef}
-        className="text-2xl font-exo font-bold text-center mb-8 text-blue-500 dark:text-white opacity-0"
+        className="text-3xl/3 font-exo font-bold text-center mb-8 text-blue-500 dark:text-white opacity-0"
       >
         Built With Modern Technologies
       </h2>
 
-      <div className="p-6 rounded-xl">
+      <div className="p-1 rounded-xl">
         <h3
           id="sub"
           ref={subRef}
-          className="text-xl font-prompt text-center text-white mb-6 font-medium opacity-0"
+          className="text-xl font-prompt text-center text-white mb-3 font-medium opacity-0"
         >
           Made Using
         </h3>

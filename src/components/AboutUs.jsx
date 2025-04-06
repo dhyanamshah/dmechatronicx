@@ -46,7 +46,7 @@ const AboutUs = () => {
 
       <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-8">
         <div className="rounded-lg shadow-md p-6 md:row-span-2">
-          <p className="font-prompt text-center text-lg sm:text-2xl text-gray-700">
+          <p className="font-prompt text-start text-lg sm:text-2xl text-gray-700">
             <span className="para">
               We&apos;re five driven college students,{" "}
             </span>

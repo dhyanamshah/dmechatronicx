@@ -88,9 +88,9 @@ header {
   background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
-    rgb(1, 129, 154) 0%,
-    rgb(10, 10, 106) 70%,
-    rgb(6, 1, 94) 100%
+    rgb(6, 1, 94) 0%,
+    rgb(17, 17, 152) 50%,
+    rgb(1, 129, 154) 100%
   );
 }
 
@@ -103,7 +103,7 @@ header {
   background: radial-gradient(
       83.29% 288.04% at 92.82% 10.09%,
       rgba(0, 0, 0, 0.51) 20.36%,
-      #01324b 67.79%,
+      #01324b 40.79%,
       #000000 100%
     )
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;

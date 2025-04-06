@@ -11,7 +11,7 @@ const Hero = () => {
   useGSAP(() => {
     // Initial animations for hero elements
     gsap.to("#hero", { opacity: 1, duration: 0.5, scale: 1, x: 0 });
-    gsap.to("#hero-text", { opacity: 1, duration: 0.5, delay: 0.3, x: -50 });
+    gsap.to("#hero-text", { opacity: .65, duration: 0.5, delay: 0.3, x: -50 });
     gsap.to("#welcome-text", { opacity: 1, duration: 0.5, delay: 0.5, x: 0 });
     gsap.to("#welcome-description", {
       opacity: 1,
