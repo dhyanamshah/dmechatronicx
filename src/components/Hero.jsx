@@ -1,47 +1,11 @@
 import logo from "../assets/logo1.svg";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TechStack from "./TechStack";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+import { initHeroAnimations } from "../animations/animations.js";
 
 const Hero = () => {
   useGSAP(() => {
-    // Initial animations for hero elements
-    gsap.to("#hero", { opacity: 1, duration: 0.5, scale: 1, x: 0 });
-    gsap.to("#hero-text", { opacity: .65, duration: 0.5, delay: 0.3, x: -50 });
-    gsap.to("#welcome-text", { opacity: 1, duration: 0.5, delay: 0.5, x: 0 });
-    gsap.to("#welcome-description", {
-      opacity: 1,
-      duration: 0.5,
-      delay: 0.7,
-      x: 0,
-    });
-
-    // Modified scroll trigger for the hero section - maintain visibility while scrolling
-    gsap.to(".hero-container", {
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        pin: false, // Remove pinning to allow natural scrolling
-      },
-    });
-
-    // Fade and scale hero elements as user scrolls down
-    gsap.to([".hero-content", ".tech-stack"], {
-      scrollTrigger: {
-        trigger: "body",
-        start: "5% top",
-        end: "30% top",
-        scrub: true,
-      },
-      opacity: 0.2,
-      scale: 0.95,
-      y: -20,
-    });
+    initHeroAnimations();
   }, []);
 
   return (

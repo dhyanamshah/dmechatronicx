@@ -1,38 +1,14 @@
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MissionAndVision from "./MissionAndVision";
-
-// Ensure ScrollTrigger is registered
-gsap.registerPlugin(ScrollTrigger);
+import { initAboutUsAnimations } from "../animations/animations.js";
 
 const AboutUs = () => {
   useGSAP(() => {
-    // Create a timeline for the about section animations
-    const aboutTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#about",
-        start: "top bottom-=100",
-        end: "bottom top+=100",
-        toggleActions: "play none none reverse", // play on enter, reverse on leave
-        onEnter: () => console.log("About section entered"),
-        onLeaveBack: () => console.log("About section left"),
-      },
-    });
+    // Initialize animations and store cleanup function
+    const cleanup = initAboutUsAnimations();
 
-    // Add animations to the timeline
-    aboutTl.to("#aboutUs", { opacity: 1, duration: 1, x: 0 });
-    aboutTl.fromTo(
-      ".para",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.2 },
-      "-=0.5" // Start a bit before the previous animation finishes
-    );
-
-    // Clean up ScrollTrigger instances when component unmounts
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    // Return cleanup function
+    return cleanup;
   }, []);
 
   return (
@@ -40,7 +16,7 @@ const AboutUs = () => {
       id="about"
       className="w-screen overflow-hidden h-full sm:py-32 py-20 sm:px-10 px-5 bg-zinc-950 relative z-10 content-section"
     >
-      <h1 id="aboutUs" className="title">
+      <h1 id="header" className="title">
         About Us
       </h1>
 
@@ -48,7 +24,7 @@ const AboutUs = () => {
         <div className="rounded-lg shadow-md p-6 md:row-span-2">
           <p className="font-prompt text-start text-lg sm:text-2xl text-gray-700">
             <span className="para">
-              We&apos;re five driven college students,{" "}
+              We&apos;re college students from CvSU Imus,{" "}
             </span>
             <span className="para">
               each with a unique spark, but united by one goal: to make an

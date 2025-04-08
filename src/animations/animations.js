@@ -1,0 +1,254 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// ===== HERO ANIMATIONS =====
+export const initHeroAnimations = () => {
+    // Initial animations for hero elements
+    gsap.to("#hero", { opacity: 1, duration: 0.5, scale: 1, x: 0 });
+    gsap.to("#hero-text", { opacity: .65, duration: 0.5, delay: 0.3, x: -50 });
+
+    // Modified scroll trigger for the hero section - maintain visibility while scrolling
+    gsap.to(".hero-container", {
+        scrollTrigger: {
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            pin: false, // Remove pinning to allow natural scrolling
+        },
+    });
+
+    // Fade and scale hero elements as user scrolls down
+    gsap.to([".hero-content", ".tech-stack"], {
+        scrollTrigger: {
+            trigger: "body",
+            start: "5% top",
+            end: "30% top",
+            scrub: true,
+        },
+        opacity: 0.2,
+        scale: 0.95,
+        y: -20,
+    });
+};
+
+// ===== ABOUTUS ANIMATIONS =====
+export const initAboutUsAnimations = () => {
+    // Create a timeline for the about section animations
+    const aboutTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#about",
+            start: "top bottom-=100",
+            end: "bottom top+=100",
+            toggleActions: "play none none reverse", // play on enter, reverse on leave
+            onEnter: () => console.log("About section entered"),
+            onLeaveBack: () => console.log("About section left"),
+        },
+    });
+
+    // Add animations to the timeline
+    aboutTl.to("#header", { opacity: 1, duration: 1, x: 0 });
+    aboutTl.fromTo(
+        ".para",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.2 },
+        "-=0.5" // Start a bit before the previous animation finishes
+    );
+
+    // Clean up function
+    return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+};
+
+// ===== TECHSTACK ANIMATIONS =====
+export const initTechStackAnimations = (iconsRef, titleRef, subRef) => {
+    // Initial setup for all elements
+    gsap.set(iconsRef.current, { opacity: 0, y: 70 });
+    gsap.set([titleRef.current, subRef.current], { opacity: 0, y: -20 });
+
+    // Animate title first
+    gsap.to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.6,
+        ease: "power2.out",
+    });
+
+    // Then animate subtitle
+    gsap.to(subRef.current, {
+        opacity: 0.5,
+        y: 0,
+        duration: 0.7,
+        delay: 1,
+        ease: "power2.out",
+    });
+
+    // Then animate tech items one by one
+    iconsRef.current.forEach((icon, index) => {
+        gsap.to(icon, {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            delay: 0.25 + 0.25 * index,
+            ease: "power3.in",
+        });
+    });
+};
+
+// ===== MISSIONANDVISION ANIMATIONS =====
+export const initMissionVisionAnimations = () => {
+    // Creating a timeline for mission and vision animations
+    const mvTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#mission",
+            start: "top bottom-=50",
+            end: "bottom top+=100",
+            toggleActions: "play none none reverse", // play on enter, reverse on leave
+        },
+    });
+
+    // Add animations to the timeline
+    mvTl.fromTo(
+        "#mission",
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 1, ease: "power2.inOut" }
+    );
+
+    mvTl.fromTo(
+        "#vision",
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 1, ease: "power2.inOut" },
+        "-=0.7" // Start a bit before the previous animation finishes
+    );
+
+    // Clean up function
+    return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+};
+
+// ===== NAVBAR ANIMATIONS =====
+
+// Handle navbar visibility based on scroll direction
+export const animateNavbarScroll = (headerRef, scrollDir, toggle) => {
+    if (headerRef.current) {
+        if (scrollDir === "down" && !toggle) {
+            // Hide navbar when scrolling down
+            gsap.to(headerRef.current, {
+                yPercent: -100,
+                duration: 0.3,
+                ease: "power3.out",
+            });
+        } else {
+            // Show navbar when scrolling up
+            gsap.to(headerRef.current, {
+                yPercent: 0,
+                duration: 0.3,
+                ease: "power3.out",
+            });
+        }
+    }
+};
+
+// Handle burger menu toggle animations
+export const animateBurgerMenu = (burgerRef, menuRef, toggle) => {
+    if (burgerRef.current) {
+        if (toggle) {
+            // Animation when menu opens
+            gsap.fromTo(
+                burgerRef.current,
+                { rotation: 0, scale: 1 },
+                { rotation: 90, scale: 1.2, duration: 0.5, ease: "power2.out" }
+            );
+
+            // Animate the menu items
+            if (menuRef.current) {
+                gsap.fromTo(
+                    menuRef.current,
+                    { opacity: 0, y: -10, pointerEvents: "none" },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.4,
+                        ease: "back.out(1.7)",
+                        pointerEvents: "auto",
+                        onComplete: () => {
+                            // Ensure menu is clickable after animation
+                            if (menuRef.current) {
+                                menuRef.current.style.pointerEvents = "auto";
+                            }
+                        }
+                    }
+                );
+            }
+        } else {
+            // Animation when menu closes
+            gsap.fromTo(
+                burgerRef.current,
+                { rotation: 90, scale: 1.2 },
+                { rotation: 0, scale: 1, duration: 0.5, ease: "power2.in" }
+            );
+
+            // Ensure menu items are not clickable when hidden
+            if (menuRef.current) {
+                gsap.to(menuRef.current, {
+                    pointerEvents: "none",
+                    duration: 0.1
+                });
+            }
+        }
+    }
+};
+
+// ===== PROJECTS ANIMATIONS =====
+export const initProjectsAnimations = (projectsRef, headerRef) => {
+    // Animate header
+    gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, x: -56 },
+        { opacity: 1, x: 0, duration: 1, ease: "power2.out" }
+    );
+
+    // Create a timeline for the project items with scroll trigger
+    const projectsTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#projects",
+            start: "top bottom-=100",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse",
+        }
+    });
+
+    // Animate each project with a staggered effect
+    projectsRef.current.forEach((project, index) => {
+        const isEven = index % 2 === 0;
+
+        projectsTl.fromTo(
+            project,
+            {
+                opacity: 0,
+                x: isEven ? -50 : 50  // Alternate direction based on even/odd
+            },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out",
+            },
+            index * 0.2 // Stagger timing
+        );
+    });
+
+    // Clean up function
+    return () => {
+        ScrollTrigger.getAll().forEach((trigger) => {
+            if (trigger.vars.trigger === "#projects") {
+                trigger.kill();
+            }
+        });
+    };
+};

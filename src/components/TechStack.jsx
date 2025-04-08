@@ -2,7 +2,7 @@ import { FaFigma, FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { SiGreensock } from "react-icons/si";
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { initTechStackAnimations } from "../animations/animations.js";
 
 const TechStack = () => {
   const technologies = [
@@ -17,38 +17,8 @@ const TechStack = () => {
   const subRef = useRef(null);
 
   useEffect(() => {
-    // Initial setup for all elements
-    gsap.set(iconsRef.current, { opacity: 0, y: 70 });
-    gsap.set([titleRef.current, subRef.current], { opacity: 0, y: -20 });
-
-    // Animate title first
-    gsap.to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 0.6,
-      ease: "power2.out",
-    });
-
-    // Then animate subtitle
-    gsap.to(subRef.current, {
-      opacity: 0.5,
-      y: 0,
-      duration: 0.7,
-      delay: 1,
-      ease: "power2.out",
-    });
-
-    // Then animate tech items one by one
-    iconsRef.current.forEach((icon, index) => {
-      gsap.to(icon, {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        delay: 0.25 + 0.25 * index,
-        ease: "power3.in",
-      });
-    });
+    // Initialize animations by passing refs
+    initTechStackAnimations(iconsRef, titleRef, subRef);
   }, []);
 
   return (

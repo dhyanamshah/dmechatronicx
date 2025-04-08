@@ -1,6 +1,6 @@
-# Ikigai Team Portfolio
+# GOODSHOT Team Portfolio
 
-A modern, responsive team portfolio website built with React and GSAP animations.
+A modern, responsive team portfolio website built with React and Tailwind CSS along with GSAP animations.
 
 ## 🚀 Features
 
@@ -22,7 +22,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone <repository-url>
-cd ikigai
+cd goodshot
 ```
 
 2. Install dependencies
@@ -41,7 +41,7 @@ npm run dev
 yarn dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal)
+4. Open your browser and navigate to `http://localhost:3001` (or the port shown in your terminal)
 
 ## 📦 Dependencies
 
@@ -53,7 +53,7 @@ yarn dev
 ## 🧰 Project Structure
 
 ```
-ikigai/
+goodshot/
 ├── public/            # Static assets
 │   └── fonts/         # Custom fonts
 ├── src/               # Source code
@@ -74,14 +74,14 @@ The project uses TailwindCSS for styling with custom utility classes defined in 
 
 Animations are powered by GSAP with the ScrollTrigger plugin. Key animations include:
 
-1. **Hero Section**: The logo and text fade in on page load
-2. **Navbar**: Hides when scrolling down, appears when scrolling up
-3. **About Section**: Content fades in as you scroll to it
-4. **Mission and Vision**: Elements slide in from the side when they enter the viewport
+1. **Hero Section**
+2. **Navbar**
+3. **About Section**
+4. **Mission and Vision**
 
 ## 🔄 Scroll Behavior
 
-The site features a fixed hero section that stays in the background while content sections slide over it as you scroll. This creates a depth effect that enhances the visual experience.
+The site features a scroll trigger animation sequence, which make the website components to be animated only when you scroll through the website.
 
 ## 🔍 Browser Compatibility
 

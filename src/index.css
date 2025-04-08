@@ -82,6 +82,24 @@ header {
 
 .title {
   @apply font-comfortaa font-bold text-3xl lg:text-5xl md:text-4xl lg:mb-0 mb-5 -translate-x-56 opacity-0;
+  background: linear-gradient(90deg, #0a1c2e 0%, #05a5bc 50%, #0f3a5f 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(5, 165, 188, 0.3);
+  padding: 0.2em 0;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #05a5bc, transparent);
 }
 
 .burger-items {
@@ -107,16 +125,15 @@ header {
       #000000 100%
     )
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  border-radius: 20px;
 }
 
 .memberbox {
   margin-inline-start: auto;
   margin-inline-end: auto;
-  position: absolute;
-  width: 99%;
-  height: 100%;
-  justify-content: left;
+  position: relative; /* Changed from absolute to relative */
+  width: 100%;
+  height: auto; /* Changed from 80% to auto */
+  max-height: 100vh; /* Added max-height instead of fixed height */
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -152,4 +169,175 @@ section {
 /* Ensure About section has proper stacking */
 #about {
   z-index: 10;
+}
+
+/* Prevent image dragging
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  pointer-events: none;
+} */
+
+/* Allow interaction with navigation images */
+nav img {
+  pointer-events: auto !important;
+}
+
+/* 3D Card Effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.project-card {
+  transition: transform 0.5s ease;
+}
+
+/* 3D Tilt Card Effect */
+.tilt-card {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  will-change: transform;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+}
+
+.card-content {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.glow-effect {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* Remove previous card rotation styles that might conflict */
+.project-card:hover,
+.project-card:nth-child(3n + 1):hover,
+.project-card:nth-child(3n + 2):hover,
+.project-card:nth-child(3n + 3):hover {
+  transform: none;
+}
+
+/* Project section zigzag layout styles */
+.project-item {
+  transition: all 0.5s ease;
+}
+
+.project-item:hover .tilt-card {
+  transform: perspective(1000px) rotateY(5deg);
+  box-shadow: 0 15px 30px -10px rgba(5, 165, 188, 0.3);
+}
+
+.project-item:nth-child(even):hover .tilt-card {
+  transform: perspective(1000px) rotateY(-5deg);
+}
+
+/* Project image reveal styles */
+.project-item .tilt-card {
+  height: 300px; /* Fixed height for consistent appearance */
+  overflow: hidden;
+}
+
+/* Enhanced hover effects for project cards */
+.project-item .tilt-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.project-item .tilt-card:hover::before {
+  opacity: 1;
+}
+
+/* Smooth transition for image reveal */
+.project-item .tilt-card img {
+  transform: scale(1.05);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.project-item .tilt-card:hover img {
+  transform: scale(1);
+}
+
+/* Improve overlay appearance */
+@media (max-width: 768px) {
+  .project-item .tilt-card {
+    height: 250px;
+  }
+}
+
+/* Add some space between projects on small screens */
+@media (max-width: 1023px) {
+  .project-item {
+    margin-bottom: 4rem;
+  }
+}
+
+/* Project image and description hover styles */
+.project-image-container {
+  height: 350px;
+  position: relative;
+}
+
+.project-image-container .tilt-card {
+  height: 100%;
+}
+
+/* Make description appear on hover with scrollbar for long content */
+.project-image-container .tilt-card > div:nth-child(3) {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(5, 165, 188, 0.5) rgba(0, 0, 0, 0.2);
+}
+
+.project-image-container .tilt-card > div:nth-child(3)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-image-container
+  .tilt-card
+  > div:nth-child(3)::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.project-image-container
+  .tilt-card
+  > div:nth-child(3)::-webkit-scrollbar-thumb {
+  background-color: rgba(5, 165, 188, 0.5);
+  border-radius: 10px;
+}
+
+/* Ensure responsive height */
+@media (max-width: 768px) {
+  .project-image-container {
+    height: 250px;
+  }
+}
+
+/* Add motion to description reveal */
+.project-image-container .tilt-card > div:nth-child(3) {
+  transform: translateY(10px);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.project-image-container .tilt-card:hover > div:nth-child(3) {
+  transform: translateY(0);
 }
