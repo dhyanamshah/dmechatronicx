@@ -15,7 +15,7 @@ export const membersData = {
             ]
         }
     ],
-    "Backend": [
+    "Project Manager": [
         {
             id: 2,
             name: "Brando Dela Torre",
@@ -27,7 +27,7 @@ export const membersData = {
             ]
         }
     ],
-    "Design": [
+    "UI/UX Designer": [
         {
             id: 3,
             name: "Kenn Harvey Brocoy",
@@ -38,7 +38,10 @@ export const membersData = {
             links: [
                 { platform: "Facebook", url: "" }
             ]
-        },
+        }
+
+    ],
+    "QA Tester": [
         {
             id: 4,
             name: "Angelica Marquez",
@@ -48,9 +51,7 @@ export const membersData = {
             links: [
                 { platform: "Facebook", url: "" }
             ]
-        }
-    ],
-    "Documentation": [
+        },
         {
             id: 5,
             name: "Nicole Rontal",
@@ -73,17 +74,18 @@ export const projectsData = [
         techstack: ["HTML", "Bulma CSS", "JavaScript"],
         links: [
             { platform: "GitHub", url: "https://github.com" },
-            { platform: "Live Demo", url: "https://example.com" }
+            { platform: "Visit Website", url: "https://cvsu-art.netlify.app/" }
         ]
     },
     {
         id: 2,
         name: "BCBI",
-        description: "The Brothers of Christ of Banneux, Inc. (BCBI) is dedicated to serving the most vulnerable members of society—Out of School Youth, people with disabilities, and the elderly—by offering residential care, vocational training, and holistic support. Through a variety of programs, BCBI equips individuals with the skills and resources they need to become self-sufficient, while nurturing their physical, emotional, and spiritual well-being. The organization fosters a supportive environment that encourages growth and independence, guided by values of charity, simplicity, and joy. By offering free education, livelihood programs, and personalized care, BCBI is transforming lives and empowering communities.",
+        description: "TThe Brothers of Christ of Banneux, Inc. (BCBI) supports vulnerable individuals—Out of School Youth, people with disabilities, and the elderly—through residential care, vocational training, and holistic support. BCBI helps individuals gain self-sufficiency while nurturing their physical, emotional, and spiritual well-being. Guided by values of charity, simplicity, and joy, the organization offers free education, livelihood programs, and personalized care to empower communities and transform lives.",
         image: "src/assets/projects/BCBI.png", // Replace with actual image path
         techstack: ["React", "Bulma CSS", "JavaScript"],
         links: [
-            { platform: "GitHub", url: "https://github.com" }
+            { platform: "GitHub", url: "https://github.com" },
+            { platform: "Visit Website", url: "https://bcbi.netlify.app/" }
         ]
     },
     {
@@ -94,7 +96,7 @@ export const projectsData = [
         techstack: ["HTML", "Bulma CSS", "JavaScript"],
         links: [
             { platform: "GitHub", url: "https://github.com" },
-            { platform: "Live Demo", url: "https://example.com" }
+            { platform: "Visit Website", url: "https://cvsu-self-aspect.netlify.app/" }
         ]
     }
 ];

@@ -134,23 +134,14 @@ export const initMissionVisionAnimations = () => {
 // ===== NAVBAR ANIMATIONS =====
 
 // Handle navbar visibility based on scroll direction
-export const animateNavbarScroll = (headerRef, scrollDir, toggle) => {
+export const animateNavbarScroll = (headerRef) => {
     if (headerRef.current) {
-        if (scrollDir === "down" && !toggle) {
-            // Hide navbar when scrolling down
-            gsap.to(headerRef.current, {
-                yPercent: -100,
-                duration: 0.3,
-                ease: "power3.out",
-            });
-        } else {
-            // Show navbar when scrolling up
-            gsap.to(headerRef.current, {
-                yPercent: 0,
-                duration: 0.3,
-                ease: "power3.out",
-            });
-        }
+        // Always keep navbar visible by setting yPercent to 0
+        gsap.to(headerRef.current, {
+            yPercent: 0,
+            duration: 0.3,
+            ease: "power3.out",
+        });
     }
 };
 
@@ -189,8 +180,8 @@ export const animateBurgerMenu = (burgerRef, menuRef, toggle) => {
             // Animation when menu closes
             gsap.fromTo(
                 burgerRef.current,
-                { rotation: 90, scale: 1.2 },
-                { rotation: 0, scale: 1, duration: 0.5, ease: "power2.in" }
+                { rotation: -35, scale: 1.2, duration: 0.2 },
+                { rotation: 0, scale: 1, duration: 0.5, ease: "power2.out" }
             );
 
             // Ensure menu items are not clickable when hidden
@@ -250,5 +241,70 @@ export const initProjectsAnimations = (projectsRef, headerRef) => {
                 trigger.kill();
             }
         });
+    };
+};
+
+// ===== CARD TILT EFFECT =====
+export const initCardTiltEffect = (cardRef, cardContentRef, cardGlowRef) => {
+    if (!cardRef || !cardRef.current) return () => { };
+
+    const card = cardRef.current;
+
+    const handleMouseMove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const percentX = (x - centerX) / centerX;
+        const percentY = -((y - centerY) / centerY);
+
+        // Apply the 3D rotation
+        card.style.transform = `perspective(1000px) rotateY(${percentX * 15
+            }deg) rotateX(${percentY * 15}deg) scale3d(1.05, 1.05, 1.05)`;
+
+        // Move content slightly forward in 3D space
+        if (cardContentRef && cardContentRef.current) {
+            cardContentRef.current.style.transform = "translateZ(30px)";
+        }
+
+        // Add glow effect that follows the cursor
+        if (cardGlowRef && cardGlowRef.current) {
+            cardGlowRef.current.style.opacity = "1";
+            cardGlowRef.current.style.background = `
+        radial-gradient(
+          circle at ${x}px ${y}px, 
+          rgba(10, 87, 246, 1),
+          transparent 10%
+        )
+      `;
+        }
+    };
+
+    const handleMouseLeave = () => {
+        // Reset transformations when mouse leaves
+        card.style.transform =
+            "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)";
+
+        if (cardContentRef && cardContentRef.current) {
+            cardContentRef.current.style.transform = "translateZ(0)";
+        }
+
+        if (cardGlowRef && cardGlowRef.current) {
+            cardGlowRef.current.style.opacity = "0";
+        }
+    };
+
+    card.addEventListener("mousemove", handleMouseMove);
+    card.addEventListener("mouseleave", handleMouseLeave);
+
+    // Return a cleanup function
+    return () => {
+        if (card) {
+            card.removeEventListener("mousemove", handleMouseMove);
+            card.removeEventListener("mouseleave", handleMouseLeave);
+        }
     };
 };

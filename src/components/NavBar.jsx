@@ -4,55 +4,82 @@ import { GoDot } from "react-icons/go";
 import burger from "../assets/Burger.svg";
 import close from "../assets/Burger-Close.svg";
 import { GoHomeFill } from "react-icons/go";
-
 import { FaInfo, FaPhone, FaUser } from "react-icons/fa";
-import {
-  animateNavbarScroll,
-  animateBurgerMenu,
-} from "../animations/animations.js";
+import { animateBurgerMenu } from "../animations/animations.js";
 import { FaScrewdriverWrench } from "react-icons/fa6";
-
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
-  const [scrollDir, setScrollDir] = useState("up");
-  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
   const burgerRef = useRef(null);
   const menuRef = useRef(null);
   const headerRef = useRef(null);
 
-  // Handler to close the burger menu
-  const handleNavItemClick = () => {
+  // Handler to close the burger menu and scroll to section
+  const handleNavItemClick = (sectionId) => {
     setToggle(false);
+    scrollToSection(sectionId);
   };
 
-  // Track scroll direction
+  // Function to scroll to section
+  const scrollToSection = (sectionId) => {
+    // Special handling for Home section - scroll to top
+    if (sectionId.toLowerCase() === "home") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setActiveSection("home");
+      return;
+    }
+
+    // Normal handling for other sections
+    const section = document.getElementById(sectionId.toLowerCase());
+    if (section) {
+      // Smooth scroll to section
+      section.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(sectionId.toLowerCase());
+    }
+  };
+
+  // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const scrollPosition = window.scrollY;
 
-      if (currentScrollY <= 10) {
-        // Always show navbar at top of page
-        setScrollDir("up");
-      } else if (currentScrollY > prevScrollY) {
-        // Scrolling down
-        setScrollDir("down");
+      // Get viewport height for calculations
+      const viewportHeight = window.innerHeight;
+
+      // Define scroll thresholds for each section
+      // We'll consider the user to be in a section when they've scrolled to a certain point
+      const thresholds = {
+        home: 0,
+        about: viewportHeight * 0.8, // 80% of the first viewport height
+        members: viewportHeight * 1.8, // After about section
+        projects: viewportHeight * 2.8, // After members section
+        contact: viewportHeight * 3.8, // After projects section
+      };
+
+      // Determine active section based on scroll position
+      if (scrollPosition < thresholds.about) {
+        setActiveSection("home");
+      } else if (scrollPosition < thresholds.members) {
+        setActiveSection("about");
+      } else if (scrollPosition < thresholds.projects) {
+        setActiveSection("members");
+      } else if (scrollPosition < thresholds.contact) {
+        setActiveSection("projects");
       } else {
-        // Scrolling up
-        setScrollDir("up");
+        setActiveSection("contact");
       }
-
-      setPrevScrollY(currentScrollY);
     };
+
+    // Initial check when component mounts
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollY]);
-
-  // Animate navbar based on scroll direction
-  useEffect(() => {
-    animateNavbarScroll(headerRef, scrollDir, toggle);
-  }, [scrollDir, toggle]);
+  }, []);
 
   // GSAP animation for burger menu toggle
   useEffect(() => {
@@ -71,22 +98,32 @@ const NavBar = () => {
   return (
     <header
       ref={headerRef}
-      className="w-full py-2 sm:px-10 px-5 flex justify-between items-center fixed top-0 left-0 z-50 nav-header transition-transform"
+      className="w-full py-2 sm:px-10 px-5 flex justify-between items-center fixed top-0 left-0 z-50 nav-header"
     >
       <nav className="flex w-full screen-max-width">
-        <span className="flex absolute justify-start py-2 font-montserrat font-bold px-5 sm:px-2 md:relative">
+        <span
+          className="flex absolute justify-start py-2 font-montserrat font-bold px-5 sm:px-2 md:relative cursor-pointer"
+          onClick={() => scrollToSection("home")}
+        >
           GOODSHOT
         </span>
-        <div className=" flex justify-between max-sm:hidden font-bold bg-cyan-400/10 backdrop-blur-md rounded-full p-2">
+        <div className="flex justify-between max-sm:hidden font-bold bg-cyan-400/10 backdrop-blur-md rounded-full p-2">
           {navItems.map((nav, index) => (
             <React.Fragment key={nav}>
               {index > 0 && (
                 <GoDot className="text-gray-100 self-center mx-1" />
               )}{" "}
-              <div className="px-9 cursor-pointer hover:text-blue-300 underline-offset-8 decoration-blue-300 hover:underline">
+              <div
+                className={`px-9 cursor-pointer hover:text-blue-300 underline-offset-8 decoration-blue-300 hover:underline ${
+                  activeSection === nav.toLowerCase()
+                    ? "text-blue-300 underline"
+                    : ""
+                }`}
+                onClick={() => scrollToSection(nav.toLowerCase())}
+              >
                 <span className="flex items-center hover:text-blue-300">
                   {navIcons[nav]}
-                  <span className=" text-sm font-montserrat ">{nav}</span>
+                  <span className="text-sm font-montserrat">{nav}</span>
                 </span>
               </div>
             </React.Fragment>
@@ -113,9 +150,13 @@ const NavBar = () => {
                 <div
                   key={nav}
                   className="py-2 w-full text-center cursor-pointer"
-                  onClick={handleNavItemClick}
+                  onClick={() => handleNavItemClick(nav.toLowerCase())}
                 >
-                  <div className="flex items-center justify-start text-white text-sm font-montserrat font-bold hover:text-blue-400 px-4 py-2 w-full">
+                  <div
+                    className={`flex items-center justify-start text-white text-sm font-montserrat font-bold hover:text-blue-400 px-4 py-2 w-full ${
+                      activeSection === nav.toLowerCase() ? "text-blue-400" : ""
+                    }`}
+                  >
                     {navIcons[nav]}
                     <span className="ml-2">{nav}</span>
                   </div>

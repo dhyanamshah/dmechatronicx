@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { FaGithub, FaExternalLinkAlt, FaHandPointUp } from "react-icons/fa";
+import { initCardTiltEffect } from "../animations/animations";
+import TechBadge from "./TechBadge";
 
 const ProjectCards = ({ project, index, cardsRef }) => {
+  const cardRef = useRef(null);
   const cardContentRef = useRef(null);
   const cardGlowRef = useRef(null);
-  const cardRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // Set reference in the parent component's ref array
@@ -12,137 +15,88 @@ const ProjectCards = ({ project, index, cardsRef }) => {
       cardsRef.current[index] = cardRef.current;
     }
 
-    // Add tilt effect
-    const card = cardRef.current;
-    if (!card) return;
+    // Use the animation function from animations.js
+    const cleanup = initCardTiltEffect(cardRef, cardContentRef, cardGlowRef);
 
-    const handleMouseMove = (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const percentX = (x - centerX) / centerX;
-      const percentY = -((y - centerY) / centerY);
-
-      // Apply the 3D rotation
-      card.style.transform = `perspective(1000px) rotateY(${
-        percentX * 15
-      }deg) rotateX(${percentY * 15}deg) scale3d(1.05, 1.05, 1.05)`;
-
-      // Move content slightly forward in 3D space
-      if (cardContentRef.current) {
-        cardContentRef.current.style.transform = "translateZ(30px)";
-      }
-
-      // Add glow effect that follows the cursor
-      if (cardGlowRef.current) {
-        cardGlowRef.current.style.opacity = "1";
-        cardGlowRef.current.style.background = `
-          radial-gradient(
-            circle at ${x}px ${y}px, 
-            rgba(59, 130, 246, 0.4),
-            transparent 60%
-          )
-        `;
-      }
-    };
-
-    const handleMouseLeave = () => {
-      // Reset transformations when mouse leaves
-      card.style.transform =
-        "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)";
-
-      if (cardContentRef.current) {
-        cardContentRef.current.style.transform = "translateZ(0)";
-      }
-
-      if (cardGlowRef.current) {
-        cardGlowRef.current.style.opacity = "0";
-      }
-    };
-
-    card.addEventListener("mousemove", handleMouseMove);
-    card.addEventListener("mouseleave", handleMouseLeave);
-
-    // Cleanup event listeners
-    return () => {
-      if (card) {
-        card.removeEventListener("mousemove", handleMouseMove);
-        card.removeEventListener("mouseleave", handleMouseLeave);
-      }
-    };
+    // Return cleanup function
+    return cleanup;
   }, [index, cardsRef]);
 
   return (
     <div
-      ref={cardRef}
-      className="tilt-card bg-zinc-900 rounded-xl overflow-hidden shadow-xl cursor-pointer"
+      className={`flex flex-col ${
+        index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+      } gap-6 mb-24 project-item`}
     >
-      {/* Glow effect overlay */}
       <div
-        ref={cardGlowRef}
-        className="glow-effect absolute inset-0 opacity-0 transition-opacity duration-300 z-0"
-      ></div>
-
-      {/* Card content that will move in 3D space */}
-      <div
-        ref={cardContentRef}
-        className="card-content relative z-10 transition-transform duration-300"
+        className="lg:w-1/2 w-full overflow-hidden rounded-lg perspective-1000 project-image-container"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Project image */}
-        <div className="relative h-52 overflow-hidden">
+        <div
+          ref={cardRef}
+          className="tilt-card w-full h-full preserve-3d relative group"
+        >
           <img
             src={project.image}
             alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-500"
+            className="w-full h-full object-cover rounded-lg transition-opacity duration-500 group-hover:opacity-100 opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-          <div className="absolute bottom-4 left-4">
-            <h3 className="text-xl font-exo font-bold text-white">
-              {project.name}
-            </h3>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-cyan-600 rounded-lg flex items-center justify-center transition-opacity duration-500 group-hover:opacity-0 opacity-50">
+            <FaHandPointUp className="text-4xl rotate-[-30deg] text-white opacity-100 group-hover:scale-125 transition-transform duration-300" />
           </div>
+
+          <div
+            ref={cardGlowRef}
+            className="glow-effect absolute inset-0 opacity-0 transition-opacity duration-300 z-0 rounded-lg"
+          ></div>
+        </div>
+      </div>
+
+      {/* Project Details */}
+      <div
+        ref={cardContentRef}
+        className="lg:w-1/2 w-full flex flex-col justify-center relative z-10 transition-transform duration-300"
+      >
+        <h3 className="text-2xl font-bold font-comfortaa mb-4 text-cyan-400">
+          {project.name}
+        </h3>
+
+        <div
+          className={`transition-all duration-500 overflow-hidden ${
+            isHovered ? "max-h-[300px] opacity-100 mb-6" : "max-h-0 opacity-0"
+          }`}
+        >
+          <p className="text-gray-300 font-montserrat">{project.description}</p>
         </div>
 
-        {/* Project content */}
-        <div className="p-5">
-          <p className="text-zinc-400 mb-4 line-clamp-3">
-            {project.description}
-          </p>
-
-          {/* Skills */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.skills.map((skill, idx) => (
-              <span
-                key={idx}
-                className="bg-zinc-800 text-blue-400 px-3 py-1 rounded-full text-xs"
-              >
-                {skill}
-              </span>
+        {/* Tech stack tags*/}
+        <div className="flex flex-wrap gap-3 mb-6">
+          {project.techstack &&
+            project.techstack.map((tech) => (
+              <TechBadge key={tech} tech={tech} />
             ))}
-          </div>
+        </div>
 
-          {/* Links */}
-          <div className="flex justify-end gap-3 mt-auto pt-2">
-            {project.links.map((link, idx) => (
+        {/* Project links */}
+        <div className="flex gap-4">
+          {project.links &&
+            project.links.map((link, idx) => (
               <a
                 key={idx}
                 href={link.url || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors p-2 rounded-full hover:bg-zinc-800"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
               >
                 {link.platform === "GitHub" ? (
-                  <FaGithub size={20} />
+                  <FaGithub />
                 ) : (
-                  <FaExternalLinkAlt size={18} />
+                  <FaExternalLinkAlt />
                 )}
+                <span>{link.platform}</span>
               </a>
             ))}
-          </div>
         </div>
       </div>
     </div>

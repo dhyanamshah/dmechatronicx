@@ -5,7 +5,10 @@ const allMembers = Object.values(membersData).flat();
 
 const Members = () => {
   return (
-    <section className="w-screen overflow-hidden h-full sm:py-32 py-20 sm:px-10 px-5 bg-zinc-950 relative z-10 ">
+    <section
+      id="members"
+      className="w-screen overflow-hidden h-full sm:py-32 py-20 sm:px-10 px-5 bg-zinc-950 relative z-10"
+    >
       <h1 id="header" className="title">
         Members
       </h1>

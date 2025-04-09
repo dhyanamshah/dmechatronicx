@@ -9,7 +9,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="hero-container h-screen w-full fixed top-0 left-0 z-0 herobox">
+    <section
+      id="home"
+      className="hero-container h-screen w-full fixed top-0 left-0 z-0 herobox"
+    >
       <div className="hero-space-top w-full h-16"></div>
       <div id="hero" className="w-full h-full mx-auto relative">
         <div className="h-full flex-center flex-col relative z-0">

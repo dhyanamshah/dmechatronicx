@@ -9,13 +9,15 @@ function App() {
   return (
     <main className="body relative">
       <NavBar />
-      <div className="content-wrapper pt-16">
-        {" "}
-        {/* Add padding to account for fixed navbar */}
+      <div className="content-wrapper">
         <Hero />
-        <About />
-        <Members />
-        <Projects />
+        <div className="content-sections">
+          <div className="h-screen"></div>{" "}
+          {/* Spacer to push content below hero */}
+          <About />
+          <Members />
+          <Projects />
+        </div>
       </div>
     </main>
   );
