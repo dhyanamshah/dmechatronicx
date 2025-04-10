@@ -35,7 +35,7 @@ const ProjectCards = ({ project, index, cardsRef }) => {
       >
         <div
           ref={cardRef}
-          className="tilt-card w-full h-full preserve-3d relative group"
+          className="tilt-card  w-full h-full preserve-3d relative group"
         >
           <img
             src={project.image}

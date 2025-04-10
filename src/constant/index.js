@@ -8,6 +8,7 @@ export const membersData = {
             id: 1,
             name: "Symond Barba",
             role: "Frontend Developer",
+            description: " A passionate frontend developer with a knack for creating beautiful and functional user interfaces. Always eager to learn and grow in the field.",
             image: "src/assets/profile/symond.png", // profile image path
             skills: ["React", "Tailwind CSS", "JavaScript"],
             links: [
@@ -20,6 +21,7 @@ export const membersData = {
             id: 2,
             name: "Brando Dela Torre",
             role: "Project Manager",
+            description: " A dedicated project manager with a focus on delivering high-quality results on time and within budget. Skilled in team collaboration and project planning.",
             image: "src/assets/profile/brando.png",
             skills: ["React", "Tailwind CSS", "JavaScript"],
             links: [
@@ -32,6 +34,7 @@ export const membersData = {
             id: 3,
             name: "Kenn Harvey Brocoy",
             role: "UI/UX Designer",
+            description: " A creative UI/UX designer with a passion for crafting user-centered designs. Committed to enhancing user experiences through innovative design solutions.",
             // Update with a valid image path or use a placeholder
             image: "src/assets/profile/kenn.png",
             skills: ["Figma", "Adobe XD", "Prototyping"],
@@ -46,6 +49,7 @@ export const membersData = {
             id: 4,
             name: "Angelica Marquez",
             role: "QA Tester",
+            description: " A detail-oriented QA tester with a strong focus on ensuring software quality. Experienced in manual and automated testing methodologies.",
             image: "src/assets/profile/nicole.png", // Make sure this file exists in the public/assets folder
             skills: [],
             links: [
@@ -56,8 +60,8 @@ export const membersData = {
             id: 5,
             name: "Nicole Rontal",
             role: "QA Tester",
+            description: " A detail-oriented QA tester with a strong focus on ensuring software quality. Experienced in manual and automated testing methodologies.",
             image: "src/assets/profile/nicole.png", // Replace with actual image path
-            skills: ["React", "Tailwind CSS", "JavaScript"],
             links: [
                 { platform: "Facebook", url: "" }
             ]
@@ -73,29 +77,26 @@ export const projectsData = [
         image: "src/assets/projects/art-gallery.png", // Replace with actual image path
         techstack: ["HTML", "Bulma CSS", "JavaScript"],
         links: [
-            { platform: "GitHub", url: "https://github.com" },
             { platform: "Visit Website", url: "https://cvsu-art.netlify.app/" }
         ]
     },
     {
         id: 2,
         name: "BCBI",
-        description: "TThe Brothers of Christ of Banneux, Inc. (BCBI) supports vulnerable individuals—Out of School Youth, people with disabilities, and the elderly—through residential care, vocational training, and holistic support. BCBI helps individuals gain self-sufficiency while nurturing their physical, emotional, and spiritual well-being. Guided by values of charity, simplicity, and joy, the organization offers free education, livelihood programs, and personalized care to empower communities and transform lives.",
+        description: "The Brothers of Christ of Banneux, Inc. (BCBI) supports vulnerable individuals—Out of School Youth, people with disabilities, and the elderly—through residential care, vocational training, and holistic support. BCBI helps individuals gain self-sufficiency while nurturing their physical, emotional, and spiritual well-being. Guided by values of charity, simplicity, and joy, the organization offers free education, livelihood programs, and personalized care to empower communities and transform lives.",
         image: "src/assets/projects/BCBI.png", // Replace with actual image path
         techstack: ["React", "Bulma CSS", "JavaScript"],
         links: [
-            { platform: "GitHub", url: "https://github.com" },
             { platform: "Visit Website", url: "https://bcbi.netlify.app/" }
         ]
     },
     {
         id: 3,
         name: "Self-Aspect",
-        description: "A cutting-edge application that pushes the boundaries of what's possible with current technologies. This project showcases our ability to implement complex features while maintaining a clean and accessible interface.",
+        description: "An educational website that explains adolescent development, puberty, and body image through the lens of psychological theories. Designed for students, it features clear content and a clean, user-friendly interface.",
         image: "src/assets/projects/self-aspect.png", // Replace with actual image path
         techstack: ["HTML", "Bulma CSS", "JavaScript"],
         links: [
-            { platform: "GitHub", url: "https://github.com" },
             { platform: "Visit Website", url: "https://cvsu-self-aspect.netlify.app/" }
         ]
     }

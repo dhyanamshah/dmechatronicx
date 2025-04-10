@@ -20,7 +20,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="w-screen overflow-hidden h-full bg-zinc-950 sm:py-32 py-20 sm:px-10 px-5 relative"
+      className="w-screen overflow-hidden h-full bg-zinc-950 sm:py-10 py-10 sm:px-10 px-5 relative"
     >
       <BackgroundEffect
         variant="projects"
@@ -32,14 +32,13 @@ const Projects = () => {
         ]}
       />
 
-      <div className="screen-max-width relative z-10">
-        <div className="mb-12 w-full items-end">
-          <h1 ref={headerRef} id="header" className="title">
-            Projects
-          </h1>
-        </div>
+      {/* Title remains left-aligned */}
+      <h1 ref={headerRef} id="header" className="title mb-12">
+        Projects
+      </h1>
 
-        <div className="w-full">
+      <div className="flex justify-center">
+        <div className="max-w-5xl w-full">
           {projectsData.map((project, index) => (
             <ProjectCards
               key={project.id}
