@@ -2,6 +2,21 @@ export const navItems = [
     "Home", "About", "Members", "Projects", "Contact"
 ];
 
+export const groupCard = [
+    {
+        id: 0,
+        image: "src/assets/group_pic/groupPic1.png",
+    },
+    {
+        id: 1,
+        image: "src/assets/group_pic/groupPic1.png",
+    },
+    {
+        id: 2,
+        image: "src/assets/group_pic/groupPic1.png",
+    }
+];
+
 export const membersData = {
     "Frontend": [
         {

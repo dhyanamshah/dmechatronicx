@@ -2,6 +2,8 @@ import { useGSAP } from "@gsap/react";
 import MissionAndVision from "./MissionAndVision";
 import { initAboutUsAnimations } from "../animations/animations.js";
 import BackgroundEffect from "./BackgroundEffect";
+import AboutUsCards from "./AboutUsCards.jsx";
+import "../styles/aboutUsCards.css";
 
 const AboutUs = () => {
   useGSAP(() => {
@@ -32,6 +34,7 @@ const AboutUs = () => {
       </h1>
 
       <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-8">
+        <AboutUsCards />
         <div className="rounded-lg shadow-md p-6 md:row-span-2">
           <p className="font-prompt text-start text-lg sm:text-2xl text-gray-700">
             <span className="para">
@@ -54,9 +57,8 @@ const AboutUs = () => {
               </span>
             </span>
           </p>
+          <MissionAndVision />
         </div>
-
-        <MissionAndVision />
       </div>
     </section>
   );

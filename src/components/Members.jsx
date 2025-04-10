@@ -37,7 +37,7 @@ const Members = () => {
       <h1 id="header" className="title">
         Members
       </h1>
-      <div className="bg-black flex flex-col">
+      <div className="bg-black/80 flex flex-col">
         <div className="p-5 h-full">
           <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 memberbox overflow-y-auto transition-all duration-300 no-scrollbar gap-4">
             {allMembers.map((member) => {
@@ -55,7 +55,7 @@ const Members = () => {
                       anyModalActive
                         ? isActive
                           ? "grayscale-0"
-                          : "grayscale opacity-50"
+                          : "grayscale hover:grayscale-0"
                         : "filter grayscale hover:grayscale-0"
                     }
                     min-h-[15vh] lg:min-h-[85vh] md:min-h-[70vh] sm:min-h-[30vh]`}

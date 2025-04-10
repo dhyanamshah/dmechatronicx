@@ -115,13 +115,13 @@ export const initMissionVisionAnimations = () => {
     mvTl.fromTo(
         "#mission",
         { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1, ease: "power2.inOut" }
+        { opacity: 1, x: -20, duration: 1, ease: "power2.inOut" }
     );
 
     mvTl.fromTo(
         "#vision",
         { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1, ease: "power2.inOut" },
+        { opacity: 1, x: -20, duration: 1, ease: "power2.inOut" },
         "-=0.7" // Start a bit before the previous animation finishes
     );
 

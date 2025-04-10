@@ -1,0 +1,160 @@
+/* Background Effects Styles */
+
+/* Projects Section Background */
+.projects-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.projects-bg-elements {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+/* Background Elements */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.circle-1 {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  right: -100px;
+  animation: float-slow 15s ease-in-out infinite alternate;
+}
+
+.circle-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -50px;
+  left: -100px;
+  animation: float-slow 18s ease-in-out infinite alternate-reverse;
+}
+
+.circle-3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 30%;
+  animation: pulse 20s ease-in-out infinite;
+}
+
+/* Grid Patterns */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+}
+
+/* Background Dots Pattern */
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(5, 165, 188, 0.3) 1px,
+    transparent 1.5px
+  );
+  background-size: 30px 30px;
+  z-index: 1;
+}
+
+/* Section-specific background variants */
+.bg-about-elements .bg-grid {
+  background-size: 60px 60px;
+  opacity: 0.7;
+}
+
+.bg-about-elements .bg-dots {
+  background-size: 35px 35px;
+  background-image: radial-gradient(
+    circle,
+    rgba(5, 105, 188, 0.25) 1px,
+    transparent 1.5px
+  );
+}
+
+.bg-members-elements .bg-grid {
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+.bg-members-elements .bg-dots {
+  background-size: 25px 25px;
+  background-image: radial-gradient(
+    circle,
+    rgba(15, 58, 95, 0.3) 1px,
+    transparent 1.5px
+  );
+}
+
+.bg-projects-elements .bg-grid {
+  background-size: 60px 60px;
+  opacity: 0.7;
+}
+
+.bg-projects-elements .bg-dots {
+  background-size: 40px 40px;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 20, 50, 0.25) 1px,
+    transparent 1.5px
+  );
+}
+
+.bg-contact-elements .bg-grid {
+  background-size: 70px 70px;
+  opacity: 0.6;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Corner Dots */
+.corner-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(5, 165, 188, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(5, 165, 188, 0.4);
+  z-index: 2;
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+.top-right {
+  top: 20px;
+  right: 20px;
+  animation: pulse-dot 3s ease-in-out infinite 0.5s;
+}
+
+.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  animation: pulse-dot 3s ease-in-out infinite 1s;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  animation: pulse-dot 3s ease-in-out infinite 1.5s;
+}

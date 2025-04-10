@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Definitions */
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("/fonts/Comfortaa.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Prompt";
+  src: url("/fonts/Prompt.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Exo";
+  src: url("/fonts/Exo.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Global Styles */
+body {
+  background-color: black;
+  color: white;
+  position: relative;
+}
+
+#root {
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+section {
+  position: relative;
+}
+
+/* Common Classes */
+.h-screen {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.screen-max-width {
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  position: relative;
+  max-width: 1120px;
+  justify-content: center;
+}
+
+/* Scrollbar Hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Apply globally to html and body */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

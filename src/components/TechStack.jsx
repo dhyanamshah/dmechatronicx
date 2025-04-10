@@ -6,7 +6,7 @@ import { initTechStackAnimations } from "../animations/animations.js";
 
 const TechStack = () => {
   const technologies = [
-    { icon: FaFigma, name: "Figma", color: "text-white" },
+    { icon: FaFigma, name: "Figma", color: "text-purple-300" },
     { icon: FaReact, name: "React", color: "text-blue-500" },
     { icon: RiTailwindCssFill, name: "Tailwind", color: "text-cyan-400" },
     { icon: SiGreensock, name: "Greensock", color: "text-green-500" },
