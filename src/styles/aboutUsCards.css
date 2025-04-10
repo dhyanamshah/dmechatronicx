@@ -115,7 +115,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   :root {
-    --card-width: 25rem;
-    --card-height: 20rem;
+    --card-width: 23rem;
+    --card-height: 18rem;
   }
 }

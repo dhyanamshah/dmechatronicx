@@ -65,7 +65,7 @@ export const membersData = {
             name: "Angelica Marquez",
             role: "QA Tester",
             description: " A detail-oriented QA tester with a strong focus on ensuring software quality. Experienced in manual and automated testing methodologies.",
-            image: "src/assets/profile/nicole.png", // Make sure this file exists in the public/assets folder
+            image: "src/assets/profile/angge.png", // Make sure this file exists in the public/assets folder
             skills: [],
             links: [
                 { platform: "Facebook", url: "" }
