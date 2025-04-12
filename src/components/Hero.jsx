@@ -2,6 +2,7 @@ import logo from "../assets/logo1.svg";
 import { useGSAP } from "@gsap/react";
 import TechStack from "./TechStack";
 import { initHeroAnimations } from "../animations/animations.js";
+import ParticlesBackground from "./ParticlesBackground";
 
 const Hero = () => {
   useGSAP(() => {
@@ -13,9 +14,13 @@ const Hero = () => {
       id="home"
       className="hero-container h-screen w-full fixed top-0 left-0 z-0 herobox"
     >
+      {/* Add particles background */}
+      <ParticlesBackground />
+
       <div className="hero-space-top w-full h-16"></div>
       <div id="hero" className="w-full h-full mx-auto relative">
-        <div className="h-full flex-center flex-col relative z-0">
+        <div className="h-full flex-center flex-col relative z-2">
+          {/* Updated z-index to be higher than particles (z-1) */}
           <div className="hero-content flex flex-col items-center justify-center gap-4 w-full px-4">
             <img
               id="hero"
