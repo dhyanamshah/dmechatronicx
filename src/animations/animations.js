@@ -374,3 +374,56 @@ export const initMemberModalAnimations = (modalRef, contentRef, onClose) => {
 
     return { handleClose, setupEscKeyListener };
 };
+
+// ===== CONTACT ANIMATIONS =====
+export const initContactAnimations = (formRef, headerRef) => {
+    // Animate header
+    gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, x: -56 },
+        { opacity: 1, x: 0, duration: 1, ease: "power2.out" }
+    );
+
+    // Animate form
+    gsap.to(formRef.current, {
+        scrollTrigger: {
+            trigger: formRef.current,
+            start: "top bottom-=100",
+            end: "bottom bottom",
+            toggleActions: "play none none reverse",
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    });
+
+    // Animate contact info items
+    gsap.fromTo(
+        ".contact-item",
+        { opacity: 0, x: -30 },
+        {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top bottom-=100",
+                end: "bottom bottom",
+                toggleActions: "play none none reverse",
+            },
+            opacity: 1,
+            x: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out"
+        }
+    );
+
+    // Clean up function
+    return () => {
+        ScrollTrigger.getAll().forEach((trigger) => {
+            if (trigger.vars.trigger === "#contact" ||
+                trigger.vars.trigger === formRef.current) {
+                trigger.kill();
+            }
+        });
+    };
+};

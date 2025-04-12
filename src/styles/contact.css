@@ -1,0 +1,78 @@
+/* Contact Form Styles */
+
+.contact-form input,
+.contact-form textarea {
+  transition: all 0.3s ease;
+  background-color: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(30, 64, 175, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.contact-form button {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.contact-form button:hover::before {
+  opacity: 1;
+}
+
+/* Social link hover effects */
+.social-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.social-link:hover::after {
+  width: 100%;
+}
+
+/* Footer styling */
+.footer-wave {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.footer-wave svg {
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 20px;
+}
+
+.footer-wave .shape-fill {
+  fill: rgba(15, 23, 42, 0.5);
+}
