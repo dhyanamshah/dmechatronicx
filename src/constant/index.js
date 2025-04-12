@@ -9,12 +9,13 @@ export const groupCard = [
     },
     {
         id: 1,
-        image: "src/assets/group_pic/groupPic1.png",
+        image: "src/assets/group_pic/groupPic2.png",
     },
     {
         id: 2,
-        image: "src/assets/group_pic/groupPic1.png",
-    }
+        image: "src/assets/group_pic/groupPic3.png",
+    },
+    { id: 3, image: "src/assets/group_pic/groupPic4.png" },
 ];
 
 export const membersData = {

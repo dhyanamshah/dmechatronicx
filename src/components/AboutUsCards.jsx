@@ -7,7 +7,7 @@ const MAX_VISIBILITY = 3;
 const Card = ({ image }) => (
   <div className="card-3d">
     <div className="card-image-container">
-      <img src={image} alt="Team" className="card-image" />
+      <img src={image} alt="Team" className="card-image cursor-default" />
     </div>
   </div>
 );

@@ -7,7 +7,7 @@
   --color-gray: #9ca3af;
   --color-black: #1f2937;
   --card-width: 20rem;
-  --card-height: 20rem;
+  --card-height: 25rem;
 }
 
 /* Larger cards for big screens */
@@ -47,14 +47,13 @@
     translateX(calc(var(--direction) * -5rem));
   filter: blur(calc(var(--abs-offset) * 0.5rem));
   transition: all 0.3s ease-out;
-  cursor: pointer;
 }
 
 /* Card Styling */
 .card-3d {
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 0rem;
   background-color: rgba(15, 23, 42, calc(0.8 - var(--abs-offset) * 0.3));
   border-radius: 0.75rem;
   color: var(--color-gray);
@@ -70,16 +69,15 @@
 /* Card Image */
 .card-image-container {
   width: calc(100% + 5rem);
-  height: 90%;
-  margin: -2rem;
+  height: 100%;
   overflow: hidden;
-  margin-top: 2rem;
+  margin-inline: -2rem;
 }
 
 .card-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit:cover;
   transition: transform 0.5s ease-out;
 }
 
@@ -115,7 +113,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   :root {
-    --card-width: 23rem;
+    --card-width: 25rem;
     --card-height: 18rem;
   }
 }

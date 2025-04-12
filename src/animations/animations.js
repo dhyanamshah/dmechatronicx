@@ -308,3 +308,69 @@ export const initCardTiltEffect = (cardRef, cardContentRef, cardGlowRef) => {
         }
     };
 };
+
+// ===== MEMBER MODAL ANIMATIONS =====
+export const initMemberModalAnimations = (modalRef, contentRef, onClose) => {
+    const modal = modalRef.current;
+    const content = contentRef.current;
+
+    // Set initial state for container - fully visible but with content hidden
+    gsap.set(modal, {
+        opacity: 1,
+        clipPath: "inset(0 0 0 0)", // Ensure the container is fully visible
+    });
+
+    // Set initial state for content - positioned at bottom of card
+    gsap.set(content, {
+        y: "100%",
+        opacity: 0.8,
+    });
+
+    // Animate content up from bottom of card
+    gsap.to(content, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.4,
+        ease: "power1.out",
+        clearProps: "transform",
+    });
+
+    // Animation for closing the modal
+    const handleClose = (e) => {
+        if (e) e.stopPropagation();
+
+        // Animate content down first
+        gsap.to(content, {
+            y: "100%",
+            opacity: 0.8,
+            duration: 0.3,
+            ease: "power1.in",
+            onComplete: () => {
+                // Then fade out the entire modal
+                gsap.to(modal, {
+                    opacity: 0,
+                    duration: 0.2,
+                    onComplete: onClose,
+                });
+            },
+        });
+    };
+
+    // Return the close handler and setup event listener
+    const setupEscKeyListener = () => {
+        const handleEscKey = (e) => {
+            if (e.key === "Escape") {
+                handleClose(e);
+            }
+        };
+
+        document.addEventListener("keydown", handleEscKey);
+
+        // Return cleanup function
+        return () => {
+            document.removeEventListener("keydown", handleEscKey);
+        };
+    };
+
+    return { handleClose, setupEscKeyListener };
+};

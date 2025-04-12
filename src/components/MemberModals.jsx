@@ -1,75 +1,38 @@
 import React, { useEffect, useRef } from "react";
 import { FaGithub, FaFacebook, FaLinkedin, FaTimes } from "react-icons/fa";
-import gsap from "gsap";
 import TechBadge from "./TechBadge";
+import { initMemberModalAnimations } from "../animations/animations.js";
 
 const MemberModals = ({ member, onClose }) => {
   const modalRef = useRef(null);
   const contentRef = useRef(null);
 
-  // Animation for modal appearance
   useEffect(() => {
-    const modal = modalRef.current;
-    const content = contentRef.current;
+    // Get animation handlers from the animation.js
+    const { handleClose, setupEscKeyListener } = initMemberModalAnimations(
+      modalRef,
+      contentRef,
+      onClose
+    );
 
-    // Set initial state for container - fully visible but with content hidden
-    gsap.set(modal, {
-      opacity: 1,
-      clipPath: "inset(0 0 0 0)", // Ensure the container is fully visible
-    });
+    // Store the close handler for use in the component
+    modalCloseHandler.current = handleClose;
 
-    // Set initial state for content - positioned at bottom of card
-    gsap.set(content, {
-      y: "100%",
-      opacity: 0.8,
-    });
+    // Setup ESC key listener and get its cleanup function
+    const cleanupListener = setupEscKeyListener();
 
-    // Animate content up from bottom of card
-    gsap.to(content, {
-      y: "0%",
-      opacity: 1,
-      duration: 0.4,
-      ease: "power1.out",
-      clearProps: "transform",
-    });
+    // Return combined cleanup function
+    return cleanupListener;
+  }, [onClose]);
 
-    // Event listener for ESC key to close modal
-    const handleEscKey = (e) => {
-      if (e.key === "Escape") {
-        handleClose(e);
-      }
-    };
+  // Ref to store the close handler from the animation module
+  const modalCloseHandler = useRef(null);
 
-    document.addEventListener("keydown", handleEscKey);
-
-    // Cleanup
-    return () => {
-      document.removeEventListener("keydown", handleEscKey);
-    };
-  }, []);
-
-  // Handle close with animation
+  // Handler that calls the animation close function
   const handleClose = (e) => {
-    if (e) e.stopPropagation();
-
-    const content = contentRef.current;
-    const modal = modalRef.current;
-
-    // Animate content down first
-    gsap.to(content, {
-      y: "100%",
-      opacity: 0.8,
-      duration: 0.3,
-      ease: "power1.in",
-      onComplete: () => {
-        // Then fade out the entire modal
-        gsap.to(modal, {
-          opacity: 0,
-          duration: 0.2,
-          onComplete: onClose,
-        });
-      },
-    });
+    if (modalCloseHandler.current) {
+      modalCloseHandler.current(e);
+    }
   };
 
   // Map platform to icon
