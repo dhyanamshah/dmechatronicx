@@ -22,7 +22,7 @@ const Members = () => {
   return (
     <section
       id="members"
-      className="w-screen overflow-hidden h-full sm:py-32 py-20 sm:px-10 px-5 bg-zinc-950 relative z-10"
+      className="w-screen overflow-hidden h-full sm:py-32 py-20 sm:px-10 px-5 bg-black relative z-10"
     >
       <BackgroundEffect
         variant="members"

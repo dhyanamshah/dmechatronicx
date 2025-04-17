@@ -5,17 +5,24 @@ export const navItems = [
 export const groupCard = [
     {
         id: 0,
-        image: "src/assets/group_pic/groupPic1.png",
+        image: "src/assets/group_pic/groupPic2.png",
     },
     {
         id: 1,
-        image: "src/assets/group_pic/groupPic2.png",
+        image: "src/assets/group_pic/groupPic1.png",
     },
     {
         id: 2,
         image: "src/assets/group_pic/groupPic3.png",
     },
-    { id: 3, image: "src/assets/group_pic/groupPic4.png" },
+    {
+        id: 3,
+        image: "src/assets/group_pic/groupPic4.png"
+    },
+    // {
+    //     id: 4,
+    //     image: "src/assets/group_pic/groupPic4.png"
+    // },
 ];
 
 export const membersData = {
@@ -55,7 +62,7 @@ export const membersData = {
             image: "src/assets/profile/kenn.png",
             skills: ["Figma", "Adobe XD", "Prototyping"],
             links: [
-                { platform: "Facebook", url: "" }
+                { platform: "GitHub", url: "https://github.com/KennedyHFB" }
             ]
         }
 
@@ -69,7 +76,7 @@ export const membersData = {
             image: "src/assets/profile/angge.png", // Make sure this file exists in the public/assets folder
             skills: [],
             links: [
-                { platform: "Facebook", url: "" }
+                { platform: "GitHub", url: "https://github.com/anggemrqz" }
             ]
         },
         {
@@ -79,7 +86,7 @@ export const membersData = {
             description: " A detail-oriented QA tester with a strong focus on ensuring software quality. Experienced in manual and automated testing methodologies.",
             image: "src/assets/profile/nicole.png", // Replace with actual image path
             links: [
-                { platform: "Facebook", url: "" }
+                { platform: "GitHub", url: "https://github.com/nikssss15" }
             ]
         }
     ]

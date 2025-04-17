@@ -244,7 +244,7 @@ export const initProjectsAnimations = (projectsRef, headerRef) => {
     };
 };
 
-// ===== CARD TILT EFFECT =====
+// ===== PROJECT CARD TILT EFFECT =====
 export const initCardTiltEffect = (cardRef, cardContentRef, cardGlowRef) => {
     if (!cardRef || !cardRef.current) return () => { };
 
