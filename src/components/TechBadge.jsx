@@ -1,5 +1,13 @@
 import React from "react";
-import { FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaFigma } from "react-icons/fa";
+import {
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaFigma,
+  FaVuejs,
+  FaBootstrap,
+} from "react-icons/fa";
 import {
   SiJavascript,
   SiTailwindcss,
@@ -7,6 +15,7 @@ import {
   SiTypescript,
   SiExpo,
 } from "react-icons/si";
+import { GiPineapple } from "react-icons/gi";
 
 const TechBadge = ({ tech }) => {
   // Tech stack color mapping with icons
@@ -83,14 +92,39 @@ const TechBadge = ({ tech }) => {
       border: "border-blue-700/30",
       icon: SiExpo,
     },
+    vue: {
+      bg: "bg-green-900/40",
+      text: "text-green-300",
+      border: "border-green-700/30",
+      icon: FaVuejs,
+    },
+    bootstrap: {
+      bg: "bg-purple-900/40",
+      text: "text-purple-300",
+      border: "border-purple-700/30",
+      icon: FaBootstrap,
+    },
+    pinia: {
+      bg: "bg-yellow-900/40",
+      text: "text-yellow-300",
+      border: "border-yellow-700/30",
+      icon: GiPineapple,
+    },
   };
 
   // Get tech info based on tech name
   const getTechInfo = (tech) => {
     const key = tech.toLowerCase().replace(/\s+/g, "");
 
-    // Check for partial matches
-    for (const techKey in techInfo) {
+    // First try an exact match
+    if (techInfo[key]) {
+      return techInfo[key];
+    }
+
+    // If no exact match, try to find the best match by sorting keys by length (longest first)
+    const techKeys = Object.keys(techInfo).sort((a, b) => b.length - a.length);
+
+    for (const techKey of techKeys) {
       if (key.includes(techKey)) {
         return techInfo[techKey];
       }

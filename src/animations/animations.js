@@ -201,7 +201,7 @@ export const initProjectsAnimations = (projectsRef, headerRef) => {
     gsap.fromTo(
         headerRef.current,
         { opacity: 0, x: -56 },
-        { opacity: 1, x: 0, duration: 1, ease: "power2.out" }
+        { opacity: 1, x: 0, duration: 1, ease: "expo.out" }
     );
 
     // Create a timeline for the project items with scroll trigger
@@ -241,6 +241,104 @@ export const initProjectsAnimations = (projectsRef, headerRef) => {
                 trigger.kill();
             }
         });
+    };
+};
+
+// ===== PROJECT CARD SCROLL ANIMATIONS =====
+export const initProjectCardScrollAnimations = (cardRef, titleRef, techStackRef, linksRef) => {
+    if (!cardRef || !cardRef.current || !titleRef || !titleRef.current) return () => { };
+
+    // Create a ScrollTrigger that handles all animations for the card
+    const scrollTrigger = ScrollTrigger.create({
+        trigger: cardRef.current,
+        start: "top bottom-=100",
+        end: "bottom top+=100",
+        toggleActions: "play none none reverse", // play on enter, reverse on leave
+        onEnter: () => {
+            // When the card enters the viewport, trigger the title animation
+            const titleText = titleRef.current.textContent;
+            titleRef.current.textContent = '';
+
+            // Create spans for each character
+            [...titleText].forEach((char, index) => {
+                const span = document.createElement('span');
+                // Use non-breaking space for actual space characters
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.opacity = '0';
+                span.style.display = 'inline-block';
+                span.style.transform = 'translateY(20px)';
+                // Add margin for space characters to ensure proper spacing
+                if (char === ' ') {
+                    span.style.marginRight = '0.25em';
+                }
+                titleRef.current.appendChild(span);
+
+                // Animate each character with GSAP
+                gsap.to(span, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.3,
+                    delay: 0.2 + (index * 0.03), // Staggered delay
+                    ease: "power2.out"
+                });
+            });
+
+            // Animate tech stack if exists
+            if (techStackRef && techStackRef.current) {
+                const techBadges = techStackRef.current.querySelectorAll('span');
+                gsap.fromTo(
+                    techBadges,
+                    { opacity: 0, y: 20 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        stagger: 0.08,
+                        delay: 0.5,
+                        ease: "power2.out"
+                    }
+                );
+            }
+
+            // Animate links if exists
+            if (linksRef && linksRef.current) {
+                const links = linksRef.current.querySelectorAll('a');
+                gsap.fromTo(
+                    links,
+                    { opacity: 0, x: -20 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.5,
+                        stagger: 0.08,
+                        delay: 0.7,
+                        ease: "power2.out"
+                    }
+                );
+            }
+        },
+        onLeaveBack: () => {
+            // Reset animations when scrolling back up and card leaves viewport
+            if (titleRef.current) {
+                const spans = titleRef.current.querySelectorAll('span');
+                gsap.to(spans, { opacity: 0, y: 20, duration: 0.2 });
+            }
+
+            if (techStackRef && techStackRef.current) {
+                const techBadges = techStackRef.current.querySelectorAll('span');
+                gsap.to(techBadges, { opacity: 0, y: 20, duration: 0.2 });
+            }
+
+            if (linksRef && linksRef.current) {
+                const links = linksRef.current.querySelectorAll('a');
+                gsap.to(links, { opacity: 0, x: -20, duration: 0.2 });
+            }
+        }
+    });
+
+    // Return cleanup function
+    return () => {
+        scrollTrigger.kill();
     };
 };
 
@@ -426,4 +524,38 @@ export const initContactAnimations = (formRef, headerRef) => {
             }
         });
     };
+};
+
+// ===== STAGGERED TEXT ANIMATION =====
+export const animateStaggeredText = (element, delay = 0) => {
+    if (!element) return;
+
+    // Get the text content
+    const text = element.textContent;
+    // Clear the element
+    element.textContent = '';
+
+    // Create spans for each character
+    [...text].forEach((char, index) => {
+        const span = document.createElement('span');
+        // Use non-breaking space for actual space characters
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.opacity = '0';
+        span.style.display = 'inline-block';
+        span.style.transform = 'translateY(20px)';
+        // Add margin for space characters to ensure proper spacing
+        if (char === ' ') {
+            span.style.marginRight = '0.25em';
+        }
+        element.appendChild(span);
+
+        // Animate each character with GSAP
+        gsap.to(span, {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            delay: delay + (index * 0.03), // Staggered delay
+            ease: "power2.out"
+        });
+    });
 };

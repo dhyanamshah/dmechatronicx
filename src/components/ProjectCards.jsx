@@ -6,7 +6,10 @@ import {
   FaPlayCircle,
   FaPauseCircle,
 } from "react-icons/fa";
-import { initCardTiltEffect } from "../animations/animations";
+import {
+  initCardTiltEffect,
+  initProjectCardScrollAnimations,
+} from "../animations/animations";
 import TechBadge from "./TechBadge";
 
 // Create a global reference to track the currently playing video
@@ -20,9 +23,12 @@ const ProjectCards = ({ project, index, cardsRef }) => {
   const cardContentRef = useRef(null);
   const cardGlowRef = useRef(null);
   const videoRef = useRef(null);
+  const titleRef = useRef(null);
+  const techStackRef = useRef(null);
+  const linksRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  
+
   // Check if the project has video
   const hasVideo = !!project.video;
 
@@ -32,16 +38,31 @@ const ProjectCards = ({ project, index, cardsRef }) => {
       cardsRef.current[index] = cardRef.current;
     }
 
-    // Use the animation function from animations.js
-    const cleanup = initCardTiltEffect(cardRef, cardContentRef, cardGlowRef);
+    // Use the card tilt animation
+    const tiltCleanup = initCardTiltEffect(
+      cardRef,
+      cardContentRef,
+      cardGlowRef
+    );
 
-    // Return cleanup function
-    return cleanup;
+    // Initialize scroll trigger animations
+    const scrollCleanup = initProjectCardScrollAnimations(
+      cardRef,
+      titleRef,
+      techStackRef,
+      linksRef
+    );
+
+    // Return combined cleanup functions
+    return () => {
+      tiltCleanup();
+      scrollCleanup();
+    };
   }, [index, cardsRef]);
 
   const toggleVideoPlay = () => {
     if (!hasVideo) return; // Don't do anything if there's no video
-    
+
     // If a different video is currently playing, stop it
     if (
       currentlyPlayingVideo.videoRef &&
@@ -87,6 +108,7 @@ const ProjectCards = ({ project, index, cardsRef }) => {
 
   return (
     <div
+      ref={cardRef}
       className={`flex flex-col ${
         index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
       } gap-6 mb-24 project-item`}
@@ -97,7 +119,6 @@ const ProjectCards = ({ project, index, cardsRef }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div
-          ref={cardRef}
           className="tilt-card w-full h-full preserve-3d relative group cursor-pointer"
           onClick={hasVideo ? toggleVideoPlay : undefined}
         >
@@ -152,7 +173,10 @@ const ProjectCards = ({ project, index, cardsRef }) => {
         ref={cardContentRef}
         className="lg:w-1/2 w-full flex flex-col justify-center relative z-10 transition-transform duration-300"
       >
-        <h3 className="text-2xl font-bold font-comfortaa mb-4 text-cyan-400">
+        <h3
+          ref={titleRef}
+          className="text-2xl font-bold font-comfortaa mb-4 text-cyan-400"
+        >
           {project.name}
         </h3>
 
@@ -170,7 +194,7 @@ const ProjectCards = ({ project, index, cardsRef }) => {
         </p>
 
         {/* Tech stack tags*/}
-        <div className="flex flex-wrap gap-3 mb-6">
+        <div ref={techStackRef} className="flex flex-wrap gap-3 mb-6">
           {project.techstack &&
             project.techstack.map((tech) => (
               <TechBadge key={tech} tech={tech} />
@@ -178,7 +202,7 @@ const ProjectCards = ({ project, index, cardsRef }) => {
         </div>
 
         {/* Project links */}
-        <div className="flex gap-4">
+        <div ref={linksRef} className="flex gap-4">
           {project.links &&
             project.links.map((link, idx) => (
               <a

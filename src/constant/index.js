@@ -137,7 +137,18 @@ export const projectsData = [
         date: "Year 2024",
         image: "src/assets/projects/water.png",
         techstack: ["React Native", "Expo"],
-
+    },
+    {
+        id: 5,
+        name: "TechHub",
+        description: "A online shopping platform for apple products. It offers a user-friendly interface, secure payment options, and a wide range of products.",
+        date: "Year 2024",
+        image: "src/assets/projects/techHub.png",
+        video: "src/assets/projects/TechHub.mp4",
+        techstack: ["Vue", "Pinia", "Bootstrap"],
+        links: [
+            { platform: "Visit Website", url: "secure-techhub.netlify.app" }
+        ]
     }
 ];
 
