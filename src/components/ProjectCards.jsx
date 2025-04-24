@@ -38,7 +38,9 @@ const ProjectCards = ({ project, index, cardsRef }) => {
       cardsRef.current[index] = cardRef.current;
     }
 
-    // Use the card tilt animation
+    // Determine if this card has reversed layout (on odd indexes)
+
+    // Use the card tilt animation with layout information
     const tiltCleanup = initCardTiltEffect(
       cardRef,
       cardContentRef,

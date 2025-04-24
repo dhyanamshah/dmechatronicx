@@ -7,6 +7,7 @@ import {
   FaFigma,
   FaVuejs,
   FaBootstrap,
+  FaPython,
 } from "react-icons/fa";
 import {
   SiJavascript,
@@ -16,6 +17,7 @@ import {
   SiExpo,
 } from "react-icons/si";
 import { GiPineapple } from "react-icons/gi";
+import { BsFiletypePhp } from "react-icons/bs";
 
 const TechBadge = ({ tech }) => {
   // Tech stack color mapping with icons
@@ -109,6 +111,18 @@ const TechBadge = ({ tech }) => {
       text: "text-yellow-300",
       border: "border-yellow-700/30",
       icon: GiPineapple,
+    },
+    php: {
+      bg: "bg-gray-900/40",
+      text: "text-gray-300",
+      border: "border-gray-700/30",
+      icon: BsFiletypePhp,
+    },
+    python: {
+      bg: "bg-blue-900/40",
+      text: "text-yellow-300",
+      border: "border-blue-700/30",
+      icon: FaPython,
     },
   };
 

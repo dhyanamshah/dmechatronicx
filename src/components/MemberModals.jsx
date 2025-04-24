@@ -80,7 +80,7 @@ const MemberModals = ({ member, onClose }) => {
           </div>
 
           {/* Main content area with scrolling */}
-          <div className="flex-grow overflow-y-auto p-6 pt-2">
+          <div className="flex-grow overflow-y-auto p-6 pt-2 no-scrollbar">
             {/* Description */}
             <p className="font-prompt text-white/70 mb-6">
               {member.description ||
@@ -100,22 +100,39 @@ const MemberModals = ({ member, onClose }) => {
                 </div>
               </div>
             )}
+
+            {/* Quote section */}
+            {member.quote && (
+              <div className="mb-6">
+                <h4 className="font-montserrat font-semibold text-white/90 mb-3">
+                  Quote
+                </h4>
+                <div className="bg-blue-900/30 p-4 rounded-lg border-l-4 border-blue-400 shadow-md relative">
+                  <p className="font-prompt italic text-white/90">
+                    {member.quote}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Footer with social links */}
           {member.links?.length > 0 && (
             <div className="p-6 pt-0 border-t border-white/10">
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3 pt-2">
                 {member.links.map((link, index) => (
                   <a
                     key={index}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-blue-900/20 hover:bg-blue-900/40 text-blue-300 rounded-full transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-900/20 hover:bg-blue-900/40 text-blue-300 rounded-lg transition-colors"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {getPlatformIcon(link.platform)}
+                    <span className="text-lg">
+                      {getPlatformIcon(link.platform)}
+                    </span>
+                    <span className="font-prompt text-sm">{link.platform}</span>
                   </a>
                 ))}
               </div>

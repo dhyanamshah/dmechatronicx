@@ -343,41 +343,58 @@ export const initProjectCardScrollAnimations = (cardRef, titleRef, techStackRef,
 };
 
 // ===== PROJECT CARD TILT EFFECT =====
-export const initCardTiltEffect = (cardRef, cardContentRef, cardGlowRef) => {
+export const initCardTiltEffect = (cardRef, cardContentRef, cardGlowRef = false) => {
     if (!cardRef || !cardRef.current) return () => { };
 
     const card = cardRef.current;
 
     const handleMouseMove = (e) => {
+        // Early return if glowRef is not available
+        if (!cardGlowRef || !cardGlowRef.current) return;
+
+        // Get the project image container - this is where our glow should be positioned
+        const imageContainer = cardGlowRef.current.closest('.project-image-container');
+        if (!imageContainer) return;
+
+        // Get coordinates relative to the image container only
+        const containerRect = imageContainer.getBoundingClientRect();
+        const mouseX = e.clientX - containerRect.left;
+        const mouseY = e.clientY - containerRect.top;
+
+        // Only proceed with tilt effect if we have valid coordinates
+        if (isNaN(mouseX) || isNaN(mouseY)) return;
+
+        // Get coordinates relative to the main card for tilt
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-
         const percentX = (x - centerX) / centerX;
         const percentY = -((y - centerY) / centerY);
 
-        // Apply the 3D rotation
-        card.style.transform = `perspective(1000px) rotateY(${percentX * 15
-            }deg) rotateX(${percentY * 15}deg) scale3d(1.05, 1.05, 1.05)`;
+        // Apply the 3D rotation to the card
+        card.style.transform = `perspective(1000px) rotateY(${percentX * 15}deg) rotateX(${percentY * 15}deg) scale3d(1.05, 1.05, 1.05)`;
 
         // Move content slightly forward in 3D space
         if (cardContentRef && cardContentRef.current) {
             cardContentRef.current.style.transform = "translateZ(30px)";
         }
 
-        // Add glow effect that follows the cursor
-        if (cardGlowRef && cardGlowRef.current) {
+        // Position the glow effect directly at the mouse position
+        // Only show glow when mouse is over the image container
+        if (mouseX >= 0 && mouseX <= containerRect.width &&
+            mouseY >= 0 && mouseY <= containerRect.height) {
             cardGlowRef.current.style.opacity = "1";
             cardGlowRef.current.style.background = `
-        radial-gradient(
-          circle at ${x}px ${y}px, 
-          rgba(10, 87, 246, 1),
-          transparent 10%
-        )
-      `;
+                radial-gradient(
+                    circle at ${mouseX}px ${mouseY}px, 
+                    rgba(10, 87, 246, 0.8),
+                    transparent 15%
+                )
+            `;
+        } else {
+            cardGlowRef.current.style.opacity = "0";
         }
     };
 
@@ -395,14 +412,23 @@ export const initCardTiltEffect = (cardRef, cardContentRef, cardGlowRef) => {
         }
     };
 
-    card.addEventListener("mousemove", handleMouseMove);
-    card.addEventListener("mouseleave", handleMouseLeave);
+    // Use try-catch to handle any DOM errors
+    try {
+        card.addEventListener("mousemove", handleMouseMove);
+        card.addEventListener("mouseleave", handleMouseLeave);
+    } catch (error) {
+        console.error("Error setting up card tilt effect:", error);
+    }
 
     // Return a cleanup function
     return () => {
-        if (card) {
-            card.removeEventListener("mousemove", handleMouseMove);
-            card.removeEventListener("mouseleave", handleMouseLeave);
+        try {
+            if (card) {
+                card.removeEventListener("mousemove", handleMouseMove);
+                card.removeEventListener("mouseleave", handleMouseLeave);
+            }
+        } catch (error) {
+            console.error("Error cleaning up card tilt effect:", error);
         }
     };
 };

@@ -3,10 +3,17 @@
 .project-image-container {
   height: 350px;
   position: relative;
+  overflow: hidden;
 }
 
 .project-image-container .tilt-card {
   height: 100%;
+}
+
+/* Glow effect styles */
+.glow-effect {
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 /* Video styles */
