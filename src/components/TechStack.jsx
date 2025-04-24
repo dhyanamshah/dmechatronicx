@@ -26,7 +26,7 @@ const TechStack = () => {
       <h2
         id="title"
         ref={titleRef}
-        className="text-3xl/3 font-exo font-bold text-center mb-8 text-blue-500 dark:text-white opacity-0"
+        className="text-xl md:text-2xl lg:text-3xl font-exo font-bold text-center mb-4 md:mb-8 text-blue-500 dark:text-white opacity-0 px-2"
       >
         Built With Modern Technologies
       </h2>
@@ -35,7 +35,7 @@ const TechStack = () => {
         <h3
           id="sub"
           ref={subRef}
-          className="text-xl font-prompt text-center text-white mb-3 font-medium opacity-0"
+          className="text-lg md:text-xl font-prompt text-center text-white mb-3 font-medium opacity-0"
         >
           Made Using
         </h3>

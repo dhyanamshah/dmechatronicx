@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import particlesConfig from "../assets/particlesjs-config.json";
+import { initResponsiveParticles } from "../animations/animations";
 
 const ParticlesBackground = () => {
   const particlesContainerRef = useRef(null);
@@ -21,21 +22,20 @@ const ParticlesBackground = () => {
           });
         }
 
-        // Initialize particles
-        window.particlesJS("particles-js", particlesConfig);
+        // Initialize responsive particles after script is loaded
+        return initResponsiveParticles(particlesContainerRef, particlesConfig);
       } catch (error) {
         console.error("Failed to load particles.js:", error);
+        return () => {}; // Return empty cleanup function in case of error
       }
     };
 
-    loadParticlesJS();
+    // Execute and store cleanup function
+    const cleanupPromise = loadParticlesJS();
 
-    // Cleanup
+    // Cleanup both the script and the particles
     return () => {
-      if (window.pJSDom && window.pJSDom.length) {
-        window.pJSDom.forEach((dom) => dom.pJS.fn.vendors.destroypJS());
-        window.pJSDom = [];
-      }
+      cleanupPromise.then((cleanup) => cleanup && cleanup());
     };
   }, []);
 

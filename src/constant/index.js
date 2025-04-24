@@ -31,7 +31,7 @@ export const membersData = {
             details: "",
             image: "/profile/symond.png", // profile image path
             skills: ["React", "Tailwind CSS", "JavaScript"],
-            quote: "Ang mahalaga ay importante.",
+            quote: "When I am beset by foolish thoughts, I do at times wistfully wish I bore a weaponized autism.",
             links: [
                 { platform: "GitHub", url: "https://github.com/04Sai" },
                 { platform: "Facebook", url: "https://www.facebook.com/Symond0422" },
@@ -61,7 +61,7 @@ export const membersData = {
             description: " A creative UI/UX designer with a passion for crafting user-centered designs. Committed to enhancing user experiences through innovative design solutions.",
             image: "/profile/kenn.png",
             skills: ["HTML", "CSS", "Figma"],
-            quote: "Why seek validation from the world who crucified a perfect man?",
+            quote: "Why quote when you can just not",
             links: [
                 { platform: "GitHub", url: "https://github.com/KennedyHFB" },
                 { platform: "Facebook", url: "https://www.facebook.com/elirapsa" },
@@ -77,7 +77,7 @@ export const membersData = {
             description: " A detail-oriented QA tester with a strong focus on ensuring software quality. Experienced in manual and automated testing methodologies.",
             image: "/profile/angge.png",
             skills: ["HTML", "CSS", "UI/UX Design"],
-            quote: "Why seek validation from the world who crucified a perfect man?",
+            quote: "Believe you can and you're halfway there",
             links: [
                 { platform: "GitHub", url: "https://github.com/anggemrqz" },
                 { platform: "Facebook", url: "https://www.facebook.com/anggemrqz" },

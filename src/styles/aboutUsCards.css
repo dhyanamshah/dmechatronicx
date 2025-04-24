@@ -110,10 +110,22 @@
   transform: translateX(150%) translateY(-50%);
 }
 
-/* Responsive adjustments */
+/* Make navigation buttons visible on mobile */
 @media (max-width: 768px) {
-  :root {
-    --card-width: 25rem;
-    --card-height: 18rem;
+  .nav.left {
+    transform: translateX(-50%) translateY(-50%);
+    left: 10px;
+  }
+
+  .nav.right {
+    transform: translateX(50%) translateY(-50%);
+    right: 10px;
+  }
+
+  .nav {
+    background: rgba(0, 0, 0, 0.5);
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
   }
 }

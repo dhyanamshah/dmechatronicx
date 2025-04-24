@@ -26,7 +26,7 @@ export const initHeroAnimations = () => {
             trigger: "body",
             start: "5% top",
             end: "30% top",
-            scrub: true,
+            scrub: 0.3,
         },
         opacity: 0.2,
         scale: 0.95,
@@ -584,4 +584,66 @@ export const animateStaggeredText = (element, delay = 0) => {
             ease: "power2.out"
         });
     });
+};
+
+// ===== RESPONSIVE PARTICLES =====
+export const initResponsiveParticles = (containerRef, config) => {
+    // Mobile breakpoint - could adjust based on your needs
+    const MOBILE_BREAKPOINT = 768;
+
+    // Function to check if current device is mobile sized
+    const isMobileView = () => window.innerWidth < MOBILE_BREAKPOINT;
+
+    // Function to initialize particles
+    const initParticles = () => {
+        if (window.particlesJS) {
+            window.particlesJS('particles-js', config);
+            if (containerRef.current) {
+                containerRef.current.style.display = 'block';
+            }
+        }
+    };
+
+    // Function to destroy particles
+    const destroyParticles = () => {
+        if (window.pJSDom && window.pJSDom.length) {
+            window.pJSDom.forEach(dom => dom.pJS.fn.vendors.destroypJS());
+            window.pJSDom = [];
+        }
+
+        if (containerRef.current) {
+            containerRef.current.style.display = 'none';
+        }
+    };
+
+    // Handle screen resize
+    const handleResize = () => {
+        if (isMobileView()) {
+            destroyParticles();
+        } else {
+            initParticles();
+        }
+    };
+
+    // Set up resize event listener
+    window.addEventListener('resize', handleResize);
+
+    // Initial setup based on current screen size - perform immediate initialization
+    if (isMobileView()) {
+        if (containerRef.current) {
+            containerRef.current.style.display = 'none';
+        }
+    } else {
+        // On larger screens, initialize particles immediately
+        // Small timeout to ensure DOM is ready
+        setTimeout(() => {
+            initParticles();
+        }, 100);
+    }
+
+    // Return cleanup function
+    return () => {
+        window.removeEventListener('resize', handleResize);
+        destroyParticles();
+    };
 };
