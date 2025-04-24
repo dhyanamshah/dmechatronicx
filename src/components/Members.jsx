@@ -35,7 +35,7 @@ const Members = () => {
       />
 
       <h1 id="header" className="title">
-        Members
+        Out Team
       </h1>
       <div className="bg-black/80 flex flex-col">
         <div className="p-5 h-full">
@@ -62,9 +62,10 @@ const Members = () => {
                   onClick={() => handleCardClick(member)}
                 >
                   <h3
-                    className={`absolute top-2 left-2 font-bold font-montserrat text-xl z-10 
+                    className={`absolute top-2 left-2 font-bold font-montserrat text-xl z-10 drop-shadow-[10px_10px_0px_rgba(11,58,82,1)]
                     ${
-                      !isActive && "lg:group-hover:translate-y-[9vh]"
+                      !isActive &&
+                      "lg:group-hover:translate-y-[9vh] group-hover:drop-shadow-[2px_2px_0px_rgba(11,58,82,1)]"
                     } duration-300 sm:group-hover:translate-y-1`}
                   >
                     {member.role}
@@ -73,7 +74,7 @@ const Members = () => {
                     src={member.image}
                     alt={member.name}
                     draggable="false"
-                    className="w-full h-full object-cover rounded-md transition-all duration-300"
+                    className="w-full h-full object-cover rounded-md transition-all duration-300 transform lg:hover:drop-shadow-[0px_0px_5px_rgba(11,58,82,1)]"
                   />
                   <div
                     className={`absolute bottom-0 left-0 w-full p-6 bg-black 

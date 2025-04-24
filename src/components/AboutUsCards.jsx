@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { groupCard } from "../constant/index";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { useGSAP } from "@gsap/react";
+import { initAboutUsAnimations } from "../animations/animations.js";
 
 const MAX_VISIBILITY = 2;
 
@@ -13,6 +15,14 @@ const Card = ({ image }) => (
 );
 
 const AboutUsCards = () => {
+  useGSAP(() => {
+    // Initialize animations and store cleanup function
+    const cleanup = initAboutUsAnimations();
+
+    // Return cleanup function
+    return cleanup;
+  }, []);
+
   const [active, setActive] = useState(1); // Start with middle card active
   const count = groupCard.length;
 
@@ -37,7 +47,7 @@ const AboutUsCards = () => {
   };
 
   return (
-    <div id="" className="carousel-wrapper">
+    <div id="about" className="relative carousel-wrapper">
       <div className="carousel">
         {/* Navigation button - always visible now */}
         <button
@@ -73,7 +83,7 @@ const AboutUsCards = () => {
           );
         })}
 
-        {/* Navigation button - always visible now */}
+        {/* Navigation button */}
         <button
           className="nav right"
           onClick={handleNext}

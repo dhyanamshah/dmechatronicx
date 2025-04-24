@@ -180,7 +180,7 @@ export const animateBurgerMenu = (burgerRef, menuRef, toggle) => {
             // Animation when menu closes
             gsap.fromTo(
                 burgerRef.current,
-                { rotation: -35, scale: 1.2, duration: 0.2 },
+                { rotation: -90, scale: 1.2, duration: 0.2 },
                 { rotation: 0, scale: 1, duration: 0.5, ease: "power2.out" }
             );
 

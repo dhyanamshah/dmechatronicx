@@ -5,6 +5,7 @@ import {
   SiTailwindcss,
   SiBulma,
   SiTypescript,
+  SiExpo,
 } from "react-icons/si";
 
 const TechBadge = ({ tech }) => {
@@ -75,6 +76,12 @@ const TechBadge = ({ tech }) => {
       text: "text-blue-300",
       border: "border-blue-700/30",
       icon: SiTypescript,
+    },
+    expo: {
+      bg: "bg-zinc-900",
+      text: "text-white",
+      border: "border-blue-700/30",
+      icon: SiExpo,
     },
   };
 
