@@ -1,4 +1,4 @@
-import logo from "../assets/logo1.svg";
+import logo from "/logo1.svg";
 import { useGSAP } from "@gsap/react";
 import TechStack from "./TechStack";
 import { initHeroAnimations } from "../animations/animations.js";

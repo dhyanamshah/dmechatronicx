@@ -1,6 +1,6 @@
 import React from "react";
 import { navItems } from "../constant/index";
-import logo from "../assets/logo1.svg";
+import logo from "/logo1.svg";
 
 const Footer = () => {
   const year = new Date().getFullYear();

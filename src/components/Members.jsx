@@ -35,7 +35,7 @@ const Members = () => {
       />
 
       <h1 id="header" className="title">
-        Out Team
+        Our Team
       </h1>
       <div className="bg-black/80 flex flex-col">
         <div className="p-5 h-full">

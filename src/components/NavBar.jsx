@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { navItems } from "../constant/index.js";
 import { GoDot } from "react-icons/go";
-import burger from "../assets/Burger.svg";
-import close from "../assets/Burger-Close.svg";
+import burger from "/Burger.svg";
+import close from "/Burger-Close.svg";
 import { GoHomeFill } from "react-icons/go";
 import { FaInfo, FaPhone, FaUser } from "react-icons/fa";
 import { animateBurgerMenu } from "../animations/animations.js";
