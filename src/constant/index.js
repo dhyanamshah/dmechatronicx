@@ -61,7 +61,7 @@ export const membersData = {
             description: " A creative UI/UX designer with a passion for crafting user-centered designs. Committed to enhancing user experiences through innovative design solutions.",
             image: "/profile/kenn.png",
             skills: ["HTML", "CSS", "Figma"],
-            quote: "Why quote when you can just not",
+            quote: "Failure is not the opposite of success, it is part of Success",
             links: [
                 { platform: "GitHub", url: "https://github.com/KennedyHFB" },
                 { platform: "Facebook", url: "https://www.facebook.com/elirapsa" },
@@ -90,7 +90,7 @@ export const membersData = {
             description: " A detail-oriented QA tester with a strong focus on ensuring software quality. Experienced in manual and automated testing methodologies.",
             image: "/profile/nicole.png",
             skills: ["HTML", "CSS", "UI/UX Design"],
-            quote: "Quality is not an act, it is a habit (sent with fire effect)",
+            quote: "Quality is not an act, it is a habit",
             links: [
                 { platform: "GitHub", url: "https://github.com/nikssss15" },
                 { platform: "Facebook", url: "https://www.facebook.com/nicole.rontal.15" },
