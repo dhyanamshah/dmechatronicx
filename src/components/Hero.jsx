@@ -2,7 +2,7 @@ import logo from "/logo1.svg";
 import { useGSAP } from "@gsap/react";
 import TechStack from "./TechStack";
 import { initHeroAnimations } from "../animations/animations.js";
-import ParticlesBackground from "./ParticlesBackground";
+// import ParticlesBackground from "./ParticlesBackground";
 
 const Hero = () => {
   useGSAP(() => {
@@ -15,7 +15,7 @@ const Hero = () => {
       className="hero-container h-screen w-full fixed top-0 left-0 z-0 herobox"
     >
       {/* Add particles background */}
-      <ParticlesBackground />
+      {/* <ParticlesBackground /> */}
 
       <div className="hero-space-top w-full h-16"></div>
       <div id="hero" className="w-full h-full mx-auto relative">

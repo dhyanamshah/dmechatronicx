@@ -31,7 +31,7 @@ export const membersData = {
             details: "",
             image: "/profile/symond.png", // profile image path
             skills: ["React", "Tailwind CSS", "JavaScript"],
-            quote: "When I am beset by foolish thoughts, I do at times wistfully wish I bore a weaponized autism.",
+            quote: "If you're going through hell, keep going. Why would you stop in hell",
             links: [
                 { platform: "GitHub", url: "https://github.com/04Sai" },
                 { platform: "Facebook", url: "https://www.facebook.com/Symond0422" },
