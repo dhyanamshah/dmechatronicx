@@ -38,22 +38,24 @@ const AboutUs = () => {
         <div className="rounded-lg shadow-md p-6 md:row-span-2">
           <p className="font-prompt text-start text-lg sm:text-2xl text-gray-700">
             <span className="para">
-              We&apos;re college students from CvSU Imus,{" "}
+              At D.mechatronicX, we are a team of passionate and ambitious innovators from across India, united by a shared love for robotics and technology.{" "}
             </span>
             <span className="para">
-              each with a unique spark, but united by one goal: to make an
-              impact.{" "}
+              Our members bring diverse skills and perspectives, but we are bound by one mission: to push the boundaries of what's possible in competitive robotics.{" "}
             </span>
             <span className="para">
-              We&apos;re here to push the limits, break the mold, and turn ideas
-              into action. With creativity, determination, and a whole lot of
-              passion,{" "}
+              Over the years, we've taken our ideas from sketches and prototypes to fully functional robots that have earned us recognition and victories in national and international competitions.{" "}
             </span>
             <span className="para">
-              we&apos;re ready to take on any challenge and leave our mark.
-              Welcome to our journey—{" "}
+              Every challenge we face is an opportunity to learn, collaborate, and grow stronger as a team.{" "}
+            </span>
+            <span className="para">
+              We believe in blending creativity, engineering precision, and teamwork to solve real-world problems and inspire the next generation of roboticists.{" "}
+            </span>
+            <span className="para">
+              For us, robotics is more than competition—it's a way to make an impact, showcase the power of innovation, and prove that with determination,{" "}
               <span className="font-bold">
-                let&apos;s build something unforgettable!
+                anything is achievable.
               </span>
             </span>
           </p>

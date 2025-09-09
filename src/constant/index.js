@@ -1,23 +1,19 @@
 export const navItems = [
-    "Home", "About", "Members", "Projects", "Contact"
+    "Home", "About", "Members", "Contact"
 ];
 
 export const groupCard = [
     {
         id: 0,
-        image: "/group_pic/groupPic2.png",
+        image: "/group_pic/groupPic2.jpg",
     },
     {
         id: 1,
-        image: "/group_pic/groupPic1.png",
+        image: "/group_pic/groupPic1.jpg",
     },
     {
         id: 2,
-        image: "/group_pic/groupPic3.png",
-    },
-    {
-        id: 3,
-        image: "/group_pic/groupPic4.png"
+        image: "/group_pic/groupPic3.jpg",
     },
 ];
 
@@ -99,74 +95,4 @@ export const membersData = {
     ]
 };
 
-export const projectsData = [
-    {
-        id: 1,
-        name: "Art Gallery",
-        description: "Our virtual art gallery is a dynamic space where creativity and connection thrive. Explore a diverse range of artworks, from timeless classics to contemporary innovations, and discover pieces that inspire and captivate. With regular artist spotlights, engaging discussions, and exclusive content, our platform fosters a vibrant community where art lovers can connect, share, and grow.",
-        date: "Year 2022",
-        image: "/projects/art-gallery.png",
-        video: "/projects/art-gallery.mp4",
-        techstack: ["HTML", "Bulma CSS", "JavaScript"],
-        links: [
-            { platform: "Visit Website", url: "https://cvsu-art.netlify.app/" }
-        ]
-    },
-    {
-        id: 2,
-        name: "Self-Aspect",
-        description: "An educational website that explains adolescent development, puberty, and body image through the lens of psychological theories. Designed for students, it features clear content and a clean, user-friendly interface.",
-        date: "Year 2023",
-        image: "/projects/self-aspect.png",
-        video: "/projects/self-aspect.mp4",
-        techstack: ["HTML", "Bulma CSS", "JavaScript"],
-        links: [
-            { platform: "Visit Website", url: "https://cvsu-self-aspect.netlify.app/" }
-        ]
-    },
-    {
-        id: 3,
-        name: "GoodShot POS",
-        description: "A point-of-sale system designed for small to medium-sized businesses. It offers features like inventory management, and sales tracking. It has a admin dashboard for managing products and sales, and a cashier interface for processing transactions.",
-        date: "Year 2022",
-        image: "/projects/GoodShotPOS.png",
-        video: "/projects/GoodShotPOS.mp4",
-        techstack: ["HTML", "Bulma", "PHP"],
-        links: [
-            { platform: "Visit Website", url: "https://a76c-2a09-bac5-4fa5-e6-00-17-347.ngrok-free.app/" }
-        ]
-    },
-    {
-        id: 4,
-        name: "BCBI",
-        description: "The Brothers of Christ of Banneux, Inc. (BCBI) supports vulnerable individuals—Out of School Youth, people with disabilities, and the elderly—through residential care, vocational training, and holistic support. BCBI helps individuals gain self-sufficiency while nurturing their physical, emotional, and spiritual well-being. Guided by values of charity, simplicity, and joy, the organization offers free education, livelihood programs, and personalized care to empower communities and transform lives.",
-        date: "Year 2024",
-        image: "/projects/BCBI.png",
-        video: "/projects/bcbi.mp4",
-        techstack: ["React", "Bulma CSS", "JavaScript"],
-        links: [
-            { platform: "Visit Website", url: "https://bcbi.netlify.app/" }
-        ]
-    },
-    {
-        id: 5,
-        name: "Automatic Water Dispenser using Arduino Uno R4 Wifi",
-        description: "An innovative water dispenser that can be controlled via a mobile app. Built using Arduino Uno R4 Wifi. It features a user-friendly interface, real-time monitoring, and connectivity using Wifi.",
-        date: "Year 2024",
-        image: "/projects/water.png",
-        techstack: ["React Native", "Expo"],
-    },
-    {
-        id: 6,
-        name: "TechHub",
-        description: "A online shopping platform for apple products. It offers a user-friendly interface, secure payment options, and a wide range of products.",
-        date: "Year 2024",
-        image: "/projects/techHub.png",
-        video: "/projects/TechHub.mp4",
-        techstack: ["Vue", "Pinia", "Bootstrap"],
-        links: [
-            { platform: "Visit Website", url: "https://secure-techhub.netlify.app" }
-        ]
-    },
-];
 

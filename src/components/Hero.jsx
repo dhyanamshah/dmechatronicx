@@ -1,4 +1,4 @@
-import logo from "/logo1.svg";
+import logo from "/mechlogo2.png";
 import { useGSAP } from "@gsap/react";
 import TechStack from "./TechStack";
 import { initHeroAnimations } from "../animations/animations.js";
@@ -28,12 +28,28 @@ const Hero = () => {
               alt="Logo"
               className="w-[100vh] mx-auto max-sm:my-12 max-sm:w-full opacity-0 scale-0 lg:mb-0 -translate-x-96 mt-5 px-3 md:mb-10"
             />
+            <div className="text-center mb-6">
+              <h2
+                className="font-exo text-white font-bold text-4xl lg:text-6xl text-center opacity-0 translate-y-[-9vh] translate-x-32 relative mb-2 tracking-wider"
+                style={{
+                  background: 'linear-gradient(45deg, #00ffff, #0080ff, #8000ff)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  textShadow: '0 0 20px rgba(0, 255, 255, 0.5)',
+                  letterSpacing: '0.1em'
+                }}
+              >
+                D.MechatronicX
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto opacity-0 translate-y-[-9vh] translate-x-32 relative"></div>
+            </div>
             <span>
               <h1
                 id="hero-text"
                 className="font-comfortaa ml-12 text-white font-bold lg:text-3xl text-center opacity-0 translate-y-[-9vh] translate-x-32 relative"
               >
-                Team Portfolio
+                Team D.MechatronicX
               </h1>
             </span>
           </div>

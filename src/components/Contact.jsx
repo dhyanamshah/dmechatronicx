@@ -56,7 +56,7 @@ const Contact = () => {
                 Email Us
               </h3>
               <a
-                href="mailto:goodshot.team@example.com"
+                href="mailto:team.dmechatronicx@example.com"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
               >
                 ic.rexsymond.barba@cvsu.edu.ph
@@ -65,16 +65,16 @@ const Contact = () => {
 
             <div className="mb-8 opacity-0 contact-item">
               <h3 className="text-xl font-montserrat font-semibold text-blue-400 mb-2">
-                Visit us on Github
+                Visit us on LinkedIn
               </h3>
               <div className="flex gap-4">
                 <a
-                  href="https://github.com/04Sai/TeamPortfolio"
+                  href="https://www.linkedin.com/company/d-mechatronicx17/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
-                  GitHub
+                  LinkedIn
                 </a>
                 {/* <a
                   href="https://facebook.com/"
