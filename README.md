@@ -1,4 +1,4 @@
-# GOODSHOT Team Portfolio
+# Team D.MechatronicX Portfolio
 
 A modern, responsive team portfolio website built with React and Tailwind CSS along with GSAP animations.
 
@@ -22,7 +22,7 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 git clone <repository-url>
-cd goodshot
+cd team-dmechatronicx
 ```
 
 2. Install dependencies
@@ -53,7 +53,7 @@ yarn dev
 ## 🧰 Project Structure
 
 ```
-goodshot/
+team-dmechatronicx/
 ├── public/            # Static assets
 │   └── fonts/         # Custom fonts
 ├── src/               # Source code
@@ -110,3 +110,4 @@ The website is fully responsive with specific styling for:
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+"# dmechatronicx" 
